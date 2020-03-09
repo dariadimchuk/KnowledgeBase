@@ -1,0 +1,36 @@
+.top-panel {
+    margin: 20px 0 0 200px;
+    width: 60%;
+    height: 50px;
+    display: flex;
+}
+
+#search_form {
+    height: 35px;
+}
+
+#search_bar {
+    width: 500px;
+    height: 35px;
+    margin-left: 30px;
+    background-color: #d5dee3;
+    color: #a8b4ba;
+    border: none;
+    font-weight: bold;
+    background-image: url("/media/search-icon.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 27px;
+    padding-left: 30px;
+}
+
+#logout-btn {
+    position: absolute;
+    left: 80%;
+    width: 85px;
+    height: 35px;
+    background-color: #42b0ed;
+    color: white;
+    border: none;
+    text-align: left;
+}

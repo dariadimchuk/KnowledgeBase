@@ -1,0 +1,66 @@
+<form id="profile_form" action="/profile/{{profile.profileID}}" method="GET"> <!-- FORM action/method may change -->
+    
+<!-- Left-side panel -->
+    <div class="split-left">
+        <!-- Profile -->
+        <div class="centered">
+            <img src="{{profile.profileImage}}" alt="Profile picture">
+            <h3>{{profile.firstName}} {{profile.lastName}}</h3>
+            <p>{{profile.about}}</p>
+        </div>
+        <!--  Posts/Messages/Likes/Edit -->
+        <div class="post-message">          <!--  Hardcoded numbers for now -->
+            <a href="/profile/{{profile.profileID}}">Posts</a><p><span id="posts">3</span></p><br>
+            <a href="/profile/{{profile.profileID}}">Messages</a><p><span id="messages">5</span></p><br>
+            <p>Likes<span id="likes">10</span></p><br><br>
+            <a href="/profile/{{profile.profileID}}">Edit Profile</a>
+        </div>
+    </div>
+    
+<!-- Right-side panel -->
+    <div class="split-right">
+        <!-- Timeline -->
+        <form action="/profile/{{profile.profileID}}" method="POST"> <!-- FORM action/method may change -->
+            <div class="timeline-section">
+                <h3>whats your question today?</h3>
+                <input type="text" placeholder="subject"><br>
+                <textarea type="text" placeholder="explain in detail ...."></textarea><br>
+                <select>
+                    <option selected disabled>topic</option>
+                    <option value="php">php</option>
+                    <option value="nodejs">nodejs</option>
+                    <option value="java">java</option>
+                    <option value="sql">sql</option>
+                    <option value="zend">zend</option>
+                </select>
+                <button type="submit">post to timeline</button>
+            </div>
+        </form>
+        <!-- Latest discussions  -->
+        <form action="/profile/{{profile.profileID}}" method="POST">
+            <div class="discussions-section">
+                <h4>Latest discussions</h4> <!-- Hardcoded for now -->
+                <div class="discussion">
+                    <img src="{{profile.profileImage}}">
+                    <div class="discussion-content">
+                        <h4>User settings deleted</h4>
+                        <p>After i logged into my node app, I saw that the seetings were deleted after I restarted my server. I had installed nodemon, it started ...</p>
+                        <p id="date">25 oct 2019</p>
+                        <a href="/profile/{{profile.profileID}}" id="num-replies">5 replies</a>
+                    </div>
+                </div>
+                
+                <div class="discussion">
+                    <img src="{{profile.profileImage}}">
+                    <div class="discussion-content">
+                        <h4>Memory leak</h4>
+                        <p>My php application usually crashes after I don't use it for a while. I think it's because I installed composer. It's consuming more ...</p>
+                        <p id="date">20 oct 2019</p>
+                        <a href="/profile/{{profile.profileID}}" id="num-replies">7 replies</a>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</form>
