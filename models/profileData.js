@@ -20,6 +20,10 @@ function getProfile(profileID) {
     return db.execute("SELECT * FROM profile WHERE profileID = '" + profileID + "'");
 }
 
+const verifyLogin = (email, password) => {
+    return db.execute(`SELECT profileID FROM profile WHERE email='${email}' AND password='${password}'`)
+}
+
 const getAllPosts = () => {
     return db.execute("SELECT * FROM post ORDER BY postDate DESC")
 }
@@ -32,8 +36,6 @@ module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
     addPost: addPost,
-    postReplies : getPostReplies
+    postReplies : getPostReplies,
+    login : verifyLogin
 }
-
-
-
