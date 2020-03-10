@@ -1,8 +1,9 @@
 /*Left-side panel*/
 .split-left {
     width: 30%;
-    position: fixed;
+    position: absolute;
     margin-left: 10%;
+    margin-right: 20%;
     margin-top: 200px;
     margin-bottom: 200px;
     left: 0;
@@ -59,7 +60,7 @@
 /*Right-side panel*/
 .split-right {
     width: 50%;
-    position: fixed;
+    position: absolute;
     margin-right: 15%;
     margin-top: 50px;
     right: 0;
