@@ -6,6 +6,7 @@ const postController = require('../controllers/postController')
 
 // PROFILE
 router.get('/profile/:profileID', profileController.getProfile);
+router.post('/post/:profileID', profileController.addPost);
 
 
 // POST
