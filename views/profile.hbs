@@ -1,4 +1,4 @@
-<form id="profile_form" action="/profile/{{profile.profileID}}" method="GET"> <!-- FORM action/method may change -->
+<!--<form id="profile_form" action="/profile/{{profile.profileID}}" method="GET">--> <!-- FORM action/method may change -->
     
 <!-- Left-side panel -->
     <div class="split-left">
@@ -20,12 +20,13 @@
 <!-- Right-side panel -->
     <div class="split-right">
         <!-- Timeline -->
-        <form action="/profile/{{profile.profileID}}" method="POST"> <!-- FORM action/method may change -->
+
+        <form action="/post/{{profile.profileID}}" method="POST"> <!-- FORM action/method may change -->
             <div class="timeline-section">
-                <h3>whats your question today?</h3>
-                <input type="text" placeholder="subject"><br>
-                <textarea type="text" placeholder="explain in detail ...."></textarea><br>
-                <select>
+                <h3 for="posttitle">whats your question today?</h3>
+                <input name="posttitle" id="posttitle" type="text" placeholder="subject"><br>
+                <textarea name="postbody" id="postbody" type="text" placeholder="explain in detail ...."></textarea><br>
+                <select name="postcategory">
                     <option selected disabled>topic</option>
                     <option value="php">php</option>
                     <option value="nodejs">nodejs</option>
