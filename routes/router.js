@@ -8,6 +8,9 @@ const postController = require('../controllers/postController')
 router.get('/profile/:profileID', profileController.getProfile);
 router.post('/post/:profileID', profileController.addPost);
 
+// LOGIN
+router.get('/login', loginController.verifyLogin)
+
 
 // POST
 router.get('/posts', postController.getAllPosts)
