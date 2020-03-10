@@ -14,3 +14,18 @@ exports.getRepliesToPost = (req,res) => {
         res.send(data)
     })
 }
+
+
+exports.addPost = (req, res, next) => {
+    let id = req.params.profileID;
+    let title = req.body.posttitle;
+    let category = req.body.postcategory;
+    let content = req.body.postbody;
+
+    let posts = profileModel.addPost(id, title, category, content);
+
+    posts.then( ([data, metadata]) => {
+        res.send(data)
+    });
+
+}

@@ -6,7 +6,6 @@ const postController = require('../controllers/postController')
 
 // PROFILE
 router.get('/profile/:profileID', profileController.getProfile);
-router.post('/post/:profileID', profileController.addPost);
 
 // LOGIN
 router.get('/login', loginController.verifyLogin)
@@ -15,6 +14,8 @@ router.get('/login', loginController.verifyLogin)
 // POST
 router.get('/posts', postController.getAllPosts)
 router.get('/post/:postID', postController.getRepliesToPost)
+router.post('/post/:profileID', postController.addPost);
+
 
 //router.get('/', loginController.logout);
 //router.post('/login', loginController.login);
