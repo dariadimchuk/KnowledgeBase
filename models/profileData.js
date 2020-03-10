@@ -1,22 +1,19 @@
 let db = require('../util/database');
 
 function addPost(profileID, title, category, content) {
+    let date = new Date().toUTCString();
 
-    let date = new Date();
-    let replies = 0;
+    let sql = "INSERT into post (profileID, postDate, title, category, content, numReplies) "
+        + "values (?, ?, ?, ?, ?, ?)";
 
-    let sql = "INSERT into post (profileID, postDate, title, category, content, numReplies) values ('"
-        + profileID + "','"
-        +  date.toUTCString() + "','"
-        +  title + "','"
-        +  category + "','"
-        +  content + "','"
-        + replies + "')";
-
-
-    console.log(sql);
-
-    return db.execute(sql);
+    return db.query(sql,[
+        profileID,
+        date,
+        title,
+        category,
+        content,
+        0
+    ],function(error, results){});
 }
 
 function getProfile(profileID) {
