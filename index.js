@@ -34,4 +34,8 @@ app.use(bodyParser.json())
 let routes = require('./routes/router');
 app.use(routes);
 
+app.get('/', function (req,res) {
+  res.render('login', {layout: 'login-layout.hbs'});
+});
+
 app.listen(5000, () => console.log('Server ready @ port 5000'))

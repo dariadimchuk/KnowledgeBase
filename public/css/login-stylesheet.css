@@ -1,0 +1,78 @@
+.top-panel {
+    margin-left: 10%;
+    width: 60%;
+    height: 50px;
+    display: flex;
+    font-family: 'Roboto';
+}
+
+input{
+    font-size: medium;
+}
+
+#email_form {
+    position: fixed;
+    margin-left: 39%;
+    padding-right: 10px;
+    padding-top: 3px;
+}
+
+#password_form{
+    position: fixed;
+    margin-left: 51%;
+    padding-top: 3px;
+}
+
+#login-btn {
+    position: absolute;
+    left: 73%;
+    margin-left: 5px;
+    width: 70px;
+    height: 30px;
+    background-color: #42b0ed;
+    color: white;
+    border: none;
+    text-align: center;
+}
+
+#sign-up{
+    position: fixed;
+    margin-left: 10%;
+    width: 80%;
+    font-family: 'Roboto';
+}
+
+#login-image{
+    position: fixed;
+    width: 30%;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 200px;
+    margin-left: 10%;
+}
+
+.signup-section{
+    padding-top: 10px;
+    margin-left: 48%;
+    width: 30%;
+}
+
+.signup-section #firstname, #lastname{
+    width: 38%;
+    margin-right: 10px;
+}
+
+.signup-section input{
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#signup-btn{
+    width: 80%;
+    background-color: #42b0ed;
+    color: white;
+    border: none;
+    text-align: left;
+    font-size: medium;
+    text-align: center;
+}
