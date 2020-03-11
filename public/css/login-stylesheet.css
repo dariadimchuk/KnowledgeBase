@@ -3,6 +3,7 @@
     width: 60%;
     height: 50px;
     display: flex;
+    font-family: 'Roboto';
 }
 
 input{
@@ -10,22 +11,23 @@ input{
 }
 
 #email_form {
-    /* width: 500px; */
+    position: fixed;
+    margin-left: 39%;
     padding-right: 10px;
-    margin-left: 35%;
-    color: #a8b4ba;
-    font-weight: bold;
     padding-top: 3px;
 }
 
 #password_form{
-    padding-right: 10px;
-    font-weight: bold;
+    position: fixed;
+    margin-left: 51%;
     padding-top: 3px;
 }
 
 #login-btn {
-    width: 75px;
+    position: absolute;
+    left: 73%;
+    margin-left: 5px;
+    width: 70px;
     height: 30px;
     background-color: #42b0ed;
     color: white;
@@ -34,18 +36,19 @@ input{
 }
 
 #sign-up{
+    position: fixed;
     margin-left: 10%;
     width: 80%;
     font-family: 'Roboto';
 }
 
 #login-image{
-    max-width: 100%;
+    position: fixed;
+    width: 30%;
     height: auto;
     margin-top: 30px;
     margin-bottom: 200px;
-    margin-right: 50px;
-    float:left;
+    margin-left: 10%;
 }
 
 .signup-section{
