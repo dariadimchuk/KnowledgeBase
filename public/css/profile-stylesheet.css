@@ -1,9 +1,8 @@
 /*Left-side panel*/
 .split-left {
     width: 30%;
-    position: absolute;
+    position: fixed;
     margin-left: 10%;
-    margin-right: 20%;
     margin-top: 200px;
     margin-bottom: 200px;
     left: 0;
@@ -19,8 +18,17 @@
     width: 40%;
 }
 
+.centered object {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
 .centered img {
     width: 130px;
+    height: 130px;
     border-radius: 50%;
     border: 1px solid #ddd;
     padding: 5px;
@@ -60,8 +68,8 @@
 /*Right-side panel*/
 .split-right {
     width: 50%;
-    position: absolute;
-    margin-right: 15%;
+    position: fixed;
+    margin-right: 10%;
     margin-top: 50px;
     right: 0;
     overflow-x: hidden;
@@ -112,8 +120,13 @@
 }
 
 /*Latest discussions*/
-.discussions-section {
+div.discussions-section {
     color: dimgrey;
+    margin-top: 30px;
+    height: 400px;
+    width: 700px;
+    overflow: auto; 
+    text-align: justify;
 }
 
 .discussion {
@@ -122,6 +135,15 @@
     width: 600px;
     height: 150px;
     font-size: 15px;
+}
+
+.discussion object {
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: inline-block;
+    float: left;
 }
 
 .discussion img {
@@ -137,10 +159,22 @@
     margin-left: 15px;
     float: right;
     width: 470px;
+    display: block;
 }
 
 .discussion-content h4 {
     margin: 0 0 10px 0;
+    display: inline;
+}
+
+#topic {
+    border: 1px solid #42b0ed;
+    width: 50px;
+    color: #42b0ed;
+    padding: 0px 35px 0px 5px;
+    float: right;
+    text-decoration: none;
+    pointer-events: none;
 }
 
 .discussion-content p {
@@ -151,6 +185,25 @@
     display: inline;
 }
 
+
 #num-replies {
-    padding-left: 230px;
+    float: right;
+}
+
+#previousPage {
+    border: 2px solid #42b0ed;
+    color: #42b0ed;
+    background-color: white;
+    width: 75px;
+    height: 30px;
+    margin-top: 15px;
+}
+
+#nextPage {
+    border: 2px solid #42b0ed;
+    color: #42b0ed;
+    background-color: white;
+    width: 75px;
+    height: 30px;
+    margin: 15px 0px 0px 500px;
 }

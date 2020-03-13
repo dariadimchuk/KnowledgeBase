@@ -1,13 +1,16 @@
 let profileModel = require('../models/profileData');
 
-exports.getAllPosts = (req,res) => {
+exports.getAllPosts = (req, res, next) => {
     let posts = profileModel.allPosts()
     posts.then( ([data, metadata]) => {
-        res.send(data)
+        res.render('profile', {
+            post: data, 
+            profileCSS: true
+        }); // Shasha: changed from res.send(data) to this
     })
 }
 
-exports.getRepliesToPost = (req,res) => {
+exports.getRepliesToPost = (req, res, next) => {
     let postid = req.params.postID
     let replies = profileModel.postReplies(postid)
     replies.then( ([data, metadata]) => {
