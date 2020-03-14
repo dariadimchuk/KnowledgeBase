@@ -12,7 +12,7 @@ router.get('/login', loginController.verifyLogin)
 
 
 // POST
-router.get('/posts', postController.getAllPosts)
+router.get('/post', postController.getAllPosts)
 router.get('/post/:postID', postController.getRepliesToPost)
 router.post('/post/:profileID', postController.addPost);
 
