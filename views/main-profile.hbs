@@ -1,0 +1,20 @@
+<div class="container">
+    {{>top-panel-partial}}
+    <div class="row">
+        <!-- Left-side panel -->
+        <div class="split-left">
+            {{>profile-partial}}
+        </div>
+        <!-- Right-side panel -->
+        <div class="split-right">
+            {{> add-timeline-partial}}
+            {{> search-by-topic-partial}}
+            {{> post-partial}}
+
+            <form action="/discussionPagination" method="POST">
+                <input id="previousPage" type="submit" value="Previous" />
+                <input id="nextPage" type="submit" value="Next" />
+            </form>
+        </div>
+    </div>
+</div>

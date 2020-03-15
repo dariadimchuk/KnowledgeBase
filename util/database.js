@@ -5,7 +5,7 @@ const pool = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
     database: 'KnowledgeBase',
-    password: '',
+    password: 'Password123',
 });
 
 module.exports = pool.promise();
