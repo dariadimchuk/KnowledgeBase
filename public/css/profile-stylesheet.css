@@ -119,6 +119,36 @@
     font-weight: bold;
 }
 
+/* Search by topic */
+.search-topic-section {
+    margin-top: 50px;
+}
+
+.search-topic-section h4 {
+    display: inline;
+    color: dimgrey;
+    padding-right: 10px;
+}
+
+.search-topic-section select {
+    width: 150px;
+    height: 30px;
+    color: #42b0ed;
+    border: 2px solid #42b0ed;
+    font-weight: bold;
+}
+
+.search-topic-section button {
+    width: 80px;
+    height: 30px;
+    color: #42b0ed;
+    background-color: #42b0ed;
+    color: white;
+    border: 2px solid #42b0ed;
+    font-weight: bold;
+    text-align: left;
+}
+
 /*Latest discussions*/
 div.discussions-section {
     color: dimgrey;
@@ -129,12 +159,16 @@ div.discussions-section {
     text-align: justify;
 }
 
+.container {
+    width: 600px;
+}
+
 .discussion {
-    display: block;
+    display: inline-block;
     text-align: left;
     width: 600px;
-    height: 150px;
     font-size: 15px;
+    margin-bottom: 50px;
 }
 
 .discussion object {
@@ -146,7 +180,7 @@ div.discussions-section {
     float: left;
 }
 
-.discussion img {
+.post-author-img {
     width: 100px;
     border-radius: 50%;
     border: 1px solid #ddd;
@@ -157,6 +191,7 @@ div.discussions-section {
 
 .discussion-content {
     margin-left: 15px;
+    padding-bottom: 20px;
     float: right;
     width: 470px;
     display: block;
@@ -165,6 +200,10 @@ div.discussions-section {
 .discussion-content h4 {
     margin: 0 0 10px 0;
     display: inline;
+}
+
+.post-section {
+    margin: 20px;
 }
 
 #topic {
@@ -177,16 +216,72 @@ div.discussions-section {
     pointer-events: none;
 }
 
-.discussion-content p {
-    margin: 5px 0 10px 15px;
+.post-reply {
+    margin: 10px 0 10px 15px;
 }
 
 #date {
     display: inline;
 }
 
+#show-replies {
+    display: none;
+}
 
-#num-replies {
+.replyButton {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reply-section {
+    margin-top: 20px;
+}
+
+.reply-profile img {
+    width: 70px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+
+.reply-profile object {
+    width: 70px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+
+.reply-content {
+    margin: 40px 0px 40px 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.add-reply-section textarea {
+    width: 462px;
+    height: 40px;
+    padding: 10px 0 0 5px;
+    vertical-align: top;
+    font-family: 'Roboto';
+    margin-bottom: 10px;
+    border: 1px solid #8c8c8c;
+}
+
+.add-reply-section .comment-btn {
+    width: 100px;
+    height: 25px;
+    background-color: #42b0ed;
+    color: white;
+    border: none;
+    text-align: left;
+    padding-left: 10px;
     float: right;
 }
 

@@ -3,7 +3,7 @@ let profileModel = require('../models/profileData');
 exports.getAllPosts = (req, res, next) => {
     let posts = profileModel.allPosts()
     posts.then( ([data, metadata]) => {
-        res.render('profile', {
+        res.render('all-posts-profile', {
             post: data, 
             profileCSS: true
         }); // Shasha: changed from res.send(data) to this

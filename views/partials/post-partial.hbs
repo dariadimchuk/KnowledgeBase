@@ -1,0 +1,42 @@
+<section class="container">
+    {{#each post}}
+    <div class="discussion">
+        <div>
+            <a href="/profile/{{this.profileID}}">
+                <object data="{{this.profileImage}}">
+                    <img class="post-author-img" src="/media/default-img.png" alt="Default Profile" />
+                </object>
+            </a>
+        </div>
+        <div class="discussion-content">
+            <div class="post-section">
+                <h4>{{this.title}}</h4>
+                <a href="/profile/{{this.profileID}}" id="topic">{{this.category}}</a>
+                <p class="post-reply">{{this.content}}</p>
+                <p class="post-reply" id="date">{{this.postDate}}</p>
+                <form action="/post/{{this.postID}}" method="GET">
+                    <button class="replyButton" types="submit" onlick="toggleReplies()" value="{{this.numReplies}} replies">{{this.numReplies}} replies</button>
+                </form> 
+            </div>
+            <div id="show-replies">
+                {{>reply-partial}}   
+            </div>
+<!--
+            <div class="reply-section">
+                <div class="reply-profile">
+                    <a href="/profile/{{!this.profileID}}">
+                        <object data="{{!this.profileImage}}">
+                            <img src="/media/default-img.png" alt="Default Profile" />
+                        </object>
+                    </a>
+                </div>
+                <div class="reply-content">
+                    {{!this.content}}
+                </div>
+            </div>
+            {{!>add-reply-partial}}                
+-->
+        </div>
+    </div>
+    {{/each}}
+</section>
