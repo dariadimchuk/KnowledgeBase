@@ -3,23 +3,14 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href="/css/login-stylesheet.css" rel="stylesheet">
+    {{#if signupCSS}}
+        <link href='/css/signup-stylesheet.css' rel='stylesheet' />
+    {{/if}}
     </head>
 <body>
-    <header>
-        <!-- Top panel for login -->
-        <div class="top-panel">
-            <img src="/media/knowledgeBase-logo.png" id="knowledgeBase-logo-img" width="300" height="50">
-            <form id="email_form">         <!-- EMAIL INPUT form action="/email" method="POST" -->
-                <input id="email_input" type="email" placeholder="email">
-            </form>
-            <form id="password_form">         <!-- PASSWORD INPUT form action="/password" method="POST" -->
-                <input id="password_input" type="password" placeholder="password">
-            </form>
-            <form id="login_form">         <!-- LOGIN BTN form action="/" method="GET" -->
-                <button id="login-btn" type="submit">login</button>
-            </form>
-        </div>
-    </header>    
+    <span id="heading">
+        <img src="/media/knowledgeBase-logo.png" width="300" height="50">
+    </span>
     {{{ body }}}
 </body>
 </html>
