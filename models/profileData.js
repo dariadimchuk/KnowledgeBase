@@ -21,7 +21,7 @@ function getProfile(profileID) {
 }
 
 const verifyLogin = (email, password) => {
-    return db.execute(`SELECT profileID FROM profile WHERE email='${email}' AND password='${password}'`)
+    return db.execute(`SELECT * FROM profile WHERE email='${email}' AND password='${password}'`)
 }
 
 const getAllPosts = () => {
@@ -32,10 +32,42 @@ const getPostReplies = (postID) => {
     return db.execute(`SELECT * from reply WHERE postID=${postID} ORDER BY replyDate ASC`)
 }
 
+const addNewProfile = (first, last, email, pw) => {
+    let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes) 
+    VALUES (?, ?, ?, ?, ?)`
+
+    return db.query(sql,[
+        first,
+        last,
+        email,
+        pw,
+        0
+    ],function(error, results){});
+}
+
+const confirmNewProfile = (imgurl, about, dob, country, profileId) => {
+    let sql = `UPDATE profile SET profileImage=?, about=?, DOB=?, country=? WHERE profileID=?`
+
+    return db.query(sql,[
+        imgurl,
+        about,
+        dob,
+        country,
+        profileId
+    ],function(error, results){});
+}
+
+const getNumPosts = (profileId) => {
+    return db.execute(`SELECT COUNT(*) FROM post WHERE profileID=${profileId}`)
+}
+
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
     addPost: addPost,
     postReplies : getPostReplies,
-    login : verifyLogin
+    login : verifyLogin,
+    newProfile : addNewProfile,
+    confirmProfile : confirmNewProfile,
+    numPosts : getNumPosts
 }
