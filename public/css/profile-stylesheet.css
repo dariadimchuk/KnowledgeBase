@@ -302,3 +302,10 @@ div.discussions-section {
     height: 30px;
     margin: 15px 0px 0px 500px;
 }
+
+.searchedPosts{
+    width: 50%;
+    margin: auto;
+    padding-top: 20px;
+    font-family: 'Roboto';
+}

@@ -61,6 +61,10 @@ const getNumPosts = (profileId) => {
     return db.execute(`SELECT COUNT(*) FROM post WHERE profileID=${profileId}`)
 }
 
+const getSearchResults= (keywords) => {
+    return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%'")
+}
+
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
@@ -69,5 +73,6 @@ module.exports = {
     login : verifyLogin,
     newProfile : addNewProfile,
     confirmProfile : confirmNewProfile,
-    numPosts : getNumPosts
+    numPosts : getNumPosts,
+    search : getSearchResults
 }
