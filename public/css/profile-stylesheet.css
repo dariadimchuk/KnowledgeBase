@@ -309,3 +309,26 @@ div.discussions-section {
     padding-top: 20px;
     font-family: 'Roboto';
 }
+
+
+#previousPage, #nextPage {
+    cursor: pointer;
+}
+
+#previousPage:disabled, #nextPage:disabled {
+    background-color: #e5e5e5;
+    border-color: #cfcfcf;
+    color: #a6a6a6;
+    cursor: default;
+}
+
+
+#discussion-profile{
+    display: none !important;
+}
+
+#empty-posts {
+    text-align: center;
+    margin-top: 10rem;
+    font-size: 27px;
+}

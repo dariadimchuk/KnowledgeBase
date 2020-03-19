@@ -19,6 +19,7 @@ router.get('/logout', loginController.logoutUser)
 router.get('/post', postController.getAllPosts)
 router.get('/post/:postID', postController.getRepliesToPost)
 router.post('/post/:profileID', postController.addPost);
+router.post('/discussionPagination', postController.latestPostsPagination)
 
 //SEARCH
 router.post('/search', searchController.searchPosts)

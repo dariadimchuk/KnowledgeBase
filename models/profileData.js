@@ -29,8 +29,8 @@ const getAllPosts = () => {
 }
 
 
-const getLatestPosts = (numToGrab) => {
-    return db.execute("SELECT * FROM post ORDER BY postDate DESC LIMIT " + numToGrab)
+const getLatestPosts = (skip, take) => {
+    return db.execute("SELECT * FROM post ORDER BY postDate DESC LIMIT " + take + " OFFSET " + skip)
 }
 
 const getPostReplies = (postID) => {
