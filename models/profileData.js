@@ -28,6 +28,11 @@ const getAllPosts = () => {
     return db.execute("SELECT * FROM post ORDER BY postDate DESC")
 }
 
+
+const getLatestPosts = (numToGrab) => {
+    return db.execute("SELECT * FROM post ORDER BY postDate DESC LIMIT " + numToGrab)
+}
+
 const getPostReplies = (postID) => {
     return db.execute(`SELECT * from reply WHERE postID=${postID} ORDER BY replyDate ASC`)
 }
@@ -68,6 +73,7 @@ const getSearchResults= (keywords) => {
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
+    getLatestPosts: getLatestPosts,
     addPost: addPost,
     postReplies : getPostReplies,
     login : verifyLogin,
