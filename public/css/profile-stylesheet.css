@@ -322,11 +322,6 @@ div.discussions-section {
     cursor: default;
 }
 
-
-#discussion-profile{
-    display: none !important;
-}
-
 #empty-posts {
     text-align: center;
     margin-top: 10rem;

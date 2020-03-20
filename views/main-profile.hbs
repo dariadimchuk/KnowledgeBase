@@ -10,10 +10,7 @@
             {{> add-timeline-partial}}
             {{> search-by-topic-partial}}
             
-            <form action="/discussionPagination" method="POST">
-                <!-- Hidden input that passed the entire profile to backend -->
-                <input id="discussion-profile" name="profileId" value="{{profile.profileID}}" />
-                
+            <form action="/profile/{{profile.profileID}}" method="POST">                
                 <!-- Prev btn. Disabled on first page. -->
                 <input id="previousPage" {{#if disablePrev}}disabled{{/if}} type="submit" name="previous" value="previous" />
                 
