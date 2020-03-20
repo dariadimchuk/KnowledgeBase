@@ -10,9 +10,9 @@ router.get('/profile/:profileID', profileController.getProfile);
 
 
 // LOGIN
-router.get('/login', loginController.verifyLogin) //will change to POST to match form action
-router.get('/signup', loginController.createNewProfile) // will change to POST to match form action
-router.get('/confirm-signup', loginController.confirmNewProfile) // will change to POST to match form action
+router.post('/login', loginController.verifyLogin)
+router.post('/signup', loginController.createNewProfile)
+router.post('/confirm-signup', loginController.confirmNewProfile)
 router.get('/logout', loginController.logoutUser)
 
 // POST

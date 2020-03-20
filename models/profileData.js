@@ -38,14 +38,17 @@ const getPostReplies = (postID) => {
 }
 
 const addNewProfile = (first, last, email, pw) => {
-    let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes) 
-    VALUES (?, ?, ?, ?, ?)`
+    let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes, numPosts, numMessages, 
+        numAnswers) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
 
     return db.query(sql,[
         first,
         last,
         email,
         pw,
+        0,
+        0,
+        0,
         0
     ],function(error, results){});
 }
