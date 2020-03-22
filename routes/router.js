@@ -4,6 +4,7 @@ const loginController = require('../controllers/loginController');
 const profileController = require('../controllers/profileController');
 const postController = require('../controllers/postController')
 const searchController = require('../controllers/searchController')
+const messageController = require('../controllers/messageController');
 
 // PROFILE
 router.get('/profile/:profileID', profileController.getProfile);
@@ -23,5 +24,8 @@ router.post('/discussionPagination', postController.latestPostsPagination)
 
 //SEARCH
 router.post('/search', searchController.searchPosts)
+
+// MESSAGE (added by Shasha - currently working on message page (Slide 10))
+router.get('/message', messageController.getAllConversation)
 
 module.exports = router;

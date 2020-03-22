@@ -73,6 +73,14 @@ const getSearchResults= (keywords) => {
     return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%'")
 }
 
+const getAllConversations = () => { //Shasha: Added to start on messages page (Slide 10)
+    return db.execute("SELECT * FROM conversation ORDER BY convoDate DESC")
+}
+
+const getAllMessages = (convoID) => { //Shasha: Added to start on messages page (Slide 10)
+    return db.execute(`SELECT * FROM message WHERE convoID=${convoID} ORDER BY messageDate DESC`)
+}
+
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
@@ -83,5 +91,7 @@ module.exports = {
     newProfile : addNewProfile,
     confirmProfile : confirmNewProfile,
     numPosts : getNumPosts,
-    search : getSearchResults
+    search : getSearchResults,
+    allConversations : getAllConversations,
+    allMessages : getAllMessages
 }

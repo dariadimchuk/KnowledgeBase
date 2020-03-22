@@ -16,27 +16,29 @@
                         <p class="post-reply">{{this.content}}</p>
                         <p class="post-reply" id="date">{{this.postDate}}</p>
                         <form action="/post/{{this.postID}}" method="GET">
-                            <button class="replyButton" types="submit" onlick="toggleReplies()" value="{{this.numReplies}} replies">{{this.numReplies}} replies</button>
+                            <button class="replyButton" type="submit" onClick="toggleReplies()" value="{{this.numReplies}} replies">{{this.numReplies}} replies</button>
                         </form> 
                     </div>
                     <div id="show-replies">
-                        {{>reply-partial}}   
+                        <!-- Uncomment the below code after back-end is in place -->
+                        {{!>reply-partial}} 
+                        <!-- Uncomment the above code after back-end is in place -->
                     </div>
-                    <!--
+                    <!-- START OF: hardcoded the reply section for now -->
                     <div class="reply-section">
                         <div class="reply-profile">
-                            <a href="/profile/{{!this.profileID}}">
-                                <object data="{{!this.profileImage}}">
+                            <a href="/profile/{{this.profileID}}">
+                                <object data="{{this.profileImage}}">
                                     <img src="/media/default-img.png" alt="Default Profile" />
                                 </object>
                             </a>
                         </div>
                         <div class="reply-content">
-                            {{!this.content}}
+                            {{this.content}}
                         </div>
                     </div>
-                    {{!>add-reply-partial}}                
-                    -->
+                    {{>add-reply-partial}}                
+                    <!-- END OF: hardcoded the reply section for now -->
                 </div>
             </div>
         {{/each}}
