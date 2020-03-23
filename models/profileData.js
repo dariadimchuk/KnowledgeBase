@@ -38,7 +38,8 @@ const getPostReplies = (postID) => {
 }
 
 const getManyPostReplies = (postIDsArray) => {
-    return db.execute(`SELECT * from reply WHERE postID IN (${postIDsArray}) ORDER BY replyDate ASC`);
+    let sql = `SELECT * from reply WHERE postID IN (${postIDsArray}) ORDER BY replyDate ASC`;
+    return db.execute(sql);
 }
 
 
