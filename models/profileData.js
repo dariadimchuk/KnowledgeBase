@@ -37,6 +37,13 @@ const getPostReplies = (postID) => {
     return db.execute(`SELECT * from reply WHERE postID=${postID} ORDER BY replyDate ASC`)
 }
 
+const getManyPostReplies = (postIDsArray) => {
+    let sql = `SELECT * from reply WHERE postID IN (${postIDsArray}) ORDER BY replyDate ASC`;
+    return db.execute(sql);
+}
+
+
+
 const addNewProfile = (first, last, email, pw) => {
     let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes, numPosts, numMessages, 
         numAnswers) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
@@ -87,6 +94,7 @@ module.exports = {
     getLatestPosts: getLatestPosts,
     addPost: addPost,
     postReplies : getPostReplies,
+    getManyPostReplies: getManyPostReplies,
     login : verifyLogin,
     newProfile : addNewProfile,
     confirmProfile : confirmNewProfile,

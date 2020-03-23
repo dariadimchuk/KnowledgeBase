@@ -7,7 +7,9 @@ const searchController = require('../controllers/searchController')
 const messageController = require('../controllers/messageController');
 
 // PROFILE
-router.get('/profile/:profileID', profileController.getProfile);
+router.route('/profile/:profileID')
+  .get(profileController.getProfile)
+  .post(profileController.getProfile);
 
 
 // LOGIN
@@ -20,7 +22,6 @@ router.get('/logout', loginController.logoutUser)
 router.get('/post', postController.getAllPosts)
 router.get('/post/:postID', postController.getRepliesToPost)
 router.post('/post/:profileID', postController.addPost);
-router.post('/discussionPagination', postController.latestPostsPagination)
 
 //SEARCH
 router.post('/search', searchController.searchPosts)
