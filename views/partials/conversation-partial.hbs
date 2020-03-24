@@ -1,16 +1,16 @@
 {{#each conversation}}
     <div class="individual-convo" onclick="showMessages('{{this.convoID}}')">
         <li class="convo-sender-image">
-            <a href="/profile/{{this.senderID}}">
-                <object data="{{this.senderImage}}">
+            <a href="/profile/{{this.profileID}}">
+                <object data="{{this.profileImage}}">
                     <img src="/media/default-img.png" alt="Default Profile" />
                 </object>
             </a>
         </li>
         <li class="convo-sender-info">
-            <h4><span id="name">{{this.senderFirstName}} {{this.senderLastName}}</span><br>
+            <h4><span id="name">{{this.firstName}} {{this.lastName}}</span><br>
             <span id="subject">{{this.subject}}</span></h4>
-            <p id="date">Mar 12</p> <!-- Hardcoded for now -->
+            <p id="date">{{this.convoDate}}</p> <!-- Hardcoded for now -->
         </li>
     </div>    
 {{/each}}

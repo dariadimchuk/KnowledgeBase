@@ -1,15 +1,15 @@
 {{#each message}}
     <div class="individual-message">
-        <h3><span> MAR 12 </span></h3>
+        <h3><span>{{this.messageDate}}</span></h3>
         <li class="message-author-image">
-            <a href="/profile/{{this.authorID}}">
-                <object data="{{this.authorImage}}">
+            <a href="/profile/{{this.profileID}}">
+                <object data="{{this.profileImage}}">
                     <img src="/media/default-img.png" alt="Default Profile" />
                 </object>
             </a>
         </li>
         <li class="message-author-info">
-            <p><span id="name">{{this.authorFirstName}} {{this.authorLastName}}</span> • 9:03 AM<br><br>
+            <p><span id="name">{{this.firstName}} {{this.lastName}}</span> • 9:03 AM<br><br>
             <span id="content">{{this.content}}</span></p>
         </li>
     </div>

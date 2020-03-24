@@ -100,7 +100,7 @@ const getAllConvos = (userID) => {
         IF(c.senderID = ${userID}, r.profileID, s.profileID) as profileID,
         IF(c.senderID = ${userID}, r.firstName, s.firstName) as firstName,
         IF(c.senderID = ${userID}, r.lastName, s.lastName) as lastName,
-        IF(c.senderID = ${userID}, r.profileImage, s.profileImage) as profilePic
+        IF(c.senderID = ${userID}, r.profileImage, s.profileImage) as profileImage
     FROM conversation c
     JOIN profile s ON s.profileID=c.senderID
     JOIN profile r ON r.profileID=c.receiverID
@@ -121,7 +121,14 @@ const addMessage = (convoID, senderID, content) => {
 }
 
 const getAllMessagesInConversation = (convoId) => {
-    return db.execute(`SELECT * FROM message WHERE convoID=${convoId} ORDER BY messageDate ASC`)
+    return db.execute(`
+    SELECT m.messageID, m.convoID, p.profileID, p.firstName, p.lastName, p.profileImage, 
+        m.content, m.messageDate
+    FROM message m
+    JOIN profile p ON m.senderID=p.profileID
+    WHERE convoID = ${convoId}
+    ORDER BY messageDate ASC
+    `)
 }
 
 const addLike = (profileID) => {
