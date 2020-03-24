@@ -10,6 +10,9 @@ const messageController = require('../controllers/messageController')
 router.route('/profile/:profileID')
   .get(profileController.getProfile)
   .post(profileController.getProfile);
+router.get('/profile/user/:profileID', profileController.getUserProfile);
+router.get('/addLike/:profileID', profileController.addLike);
+router.get('/profile/user/:profileID/newMessage', profileController.createNewMessage)
 
 // LOGIN
 router.post('/login', loginController.verifyLogin)

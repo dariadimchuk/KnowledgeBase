@@ -70,7 +70,7 @@ exports.getProfile = async (req,res,next) => {
     res.render('main-profile', 
         { 
             profileId: id,
-            profile: profile[0],
+            profile: JSON.parse(JSON.stringify(profile[0][0])), //Vincent - changed, hbs were not able to access profile data before change
             post: discussion[0],
             replies: repliesByPostIDs,
             profileCSS: true ,
@@ -80,4 +80,45 @@ exports.getProfile = async (req,res,next) => {
     );
 
 
+}
+
+exports.getUserProfile = (req,res,next) => {
+    let id = req.params.profileID;
+    
+    let allUserPosts = profileModel.userPosts(id);
+    
+    allUserPosts.then( ([allUserPosts, metadata]) => {
+        let Profile = profileModel.getProfile(id);
+        Profile.then( ([data, metadata]) => {
+            
+            res.render('user-profile', 
+                { 
+                    profile: data[0],
+                    post: allUserPosts,
+                    profileCSS: true ,
+                    disablePrev: true
+                });
+       });
+    })
+}
+
+exports.addLike = async (req,res,next) => {
+    let id = req.params.profileID;
+    await profileModel.addLike(id);
+    res.redirect(`/profile/user/${id}`);
+}
+
+exports.createNewMessage = (req, res) => {
+    let id = req.params.profileID;
+    
+    let Profile = profileModel.getProfile(id);
+    Profile.then(([data, metadata]) =>{
+        res.render('new-message',
+            {
+                profile: data[0],
+                profileCSS: true,
+                messageCSS: true,
+                disablePrev: true
+            });
+    });
 }
