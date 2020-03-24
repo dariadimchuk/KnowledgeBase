@@ -17,7 +17,7 @@ function addPost(profileID, title, category, content) {
 }
 
 function getProfile(profileID) {
-    return db.execute("SELECT * FROM profile WHERE profileID = '" + profileID + "'");
+    return db.execute(`SELECT * FROM profile WHERE profileID=${profileID}`)
 }
 
 const verifyLogin = (email, password) => {
@@ -45,15 +45,14 @@ const getManyPostReplies = (postIDsArray) => {
 
 
 const addNewProfile = (first, last, email, pw) => {
-    let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes, numPosts, numMessages, 
-        numAnswers) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes, numPosts, numMessages) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`
 
     return db.query(sql,[
         first,
         last,
         email,
         pw,
-        0,
         0,
         0,
         0
@@ -76,16 +75,50 @@ const getNumPosts = (profileId) => {
     return db.execute(`SELECT COUNT(*) FROM post WHERE profileID=${profileId}`)
 }
 
-const getSearchResults= (keywords) => {
+const getSearchResults = (keywords) => {
     return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%'")
 }
 
-const getAllConversations = () => { //Shasha: Added to start on messages page (Slide 10)
-    return db.execute("SELECT * FROM conversation ORDER BY convoDate DESC")
+const addConversation = (senderID, receiverID, subject) => {
+    let sql = `INSERT INTO conversation (senderID, receiverID, subject, convoDate) 
+    VALUES (?, ?, ?, CURRENT_DATE())`
+
+    return db.query(sql,[
+        senderID, 
+        receiverID, 
+        subject
+    ],function(error, results){})
 }
 
-const getAllMessages = (convoID) => { //Shasha: Added to start on messages page (Slide 10)
-    return db.execute(`SELECT * FROM message WHERE convoID=${convoID} ORDER BY messageDate DESC`)
+const getAllConvos = (userID) => {
+    // If user = sender, return receiver info, else return sender info
+    return db.execute(`
+    SELECT c.convoID, c.subject, c.convoDate, 
+        IF(c.senderID = ${userID}, r.profileID, s.profileID) as profileID,
+        IF(c.senderID = ${userID}, r.firstName, s.firstName) as firstName,
+        IF(c.senderID = ${userID}, r.lastName, s.lastName) as lastName,
+        IF(c.senderID = ${userID}, r.profileImage, s.profileImage) as profilePic
+    FROM conversation c
+    JOIN profile s ON s.profileID=c.senderID
+    JOIN profile r ON r.profileID=c.receiverID
+    WHERE s.profileID = ${userID} OR r.profileID = ${userID}
+    ORDER BY convoDate ASC
+    `)
+}
+
+const addMessage = (convoID, senderID, content) => {
+    let sql = `INSERT INTO message (convoID, senderID, content, messageDate) 
+    VALUES (?, ?, ?, CURRENT_TIMESTAMP())`
+
+    return db.query(sql,[
+        convoID, 
+        senderID, 
+        content
+    ],function(error, results){})
+}
+
+const getAllMessagesInConversation = (convoId) => {
+    return db.execute(`SELECT * FROM message WHERE convoID=${convoId} ORDER BY messageDate ASC`)
 }
 
 module.exports = {
@@ -100,6 +133,8 @@ module.exports = {
     confirmProfile : confirmNewProfile,
     numPosts : getNumPosts,
     search : getSearchResults,
-    allConversations : getAllConversations,
-    allMessages : getAllMessages
+    addConvo : addConversation,
+    allConvos : getAllConvos,
+    addMessage : addMessage,
+    allConvoMessages : getAllMessagesInConversation,
 }

@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-// connect to a database peoplebook running on your localmachine
+// connect to a remotemysql
 const pool = mysql.createPool({
     host: 'remotemysql.com',
     user: 'yvLOX5tWdS',
