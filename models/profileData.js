@@ -28,6 +28,9 @@ const getAllPosts = () => {
     return db.execute("SELECT * FROM post ORDER BY postDate DESC")
 }
 
+const getUserPosts = (profileID) => {
+    return db.execute(`SELECT * FROM post WHERE profileID='${profileID}'`)
+}
 
 const getLatestPosts = (skip, take) => {
     return db.execute("SELECT * FROM post ORDER BY postDate DESC LIMIT " + take + " OFFSET " + skip)
@@ -121,6 +124,10 @@ const getAllMessagesInConversation = (convoId) => {
     return db.execute(`SELECT * FROM message WHERE convoID=${convoId} ORDER BY messageDate ASC`)
 }
 
+const addLike = (profileID) => {
+    return db.execute(`UPDATE profile SET numLikes = numLikes + 1 WHERE profileID='${profileID}'`)
+}
+
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
@@ -137,4 +144,6 @@ module.exports = {
     allConvos : getAllConvos,
     addMessage : addMessage,
     allConvoMessages : getAllMessagesInConversation,
+    addLike: addLike,
+    userPosts: getUserPosts
 }

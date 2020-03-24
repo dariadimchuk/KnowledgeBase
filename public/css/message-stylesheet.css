@@ -199,3 +199,51 @@
     height: 60px;
     width: 49%;
 }
+
+/* Create Message Form */
+
+.message-container{
+    position: fixed;
+    display: inline-flex;
+    margin: 50px 20% 200px 0px;
+    right: 0; width: 70%;
+    height: 80%;
+    font-family: 'Roboto';
+}
+
+.message-form{
+    padding: 20px 0 0 20%;
+}
+
+.message-form object{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    float: left;
+}
+
+#message-subject{
+    margin: 0 0 10px 20px;
+    width: 500px;
+    height: 40px;
+}
+
+#message-details{
+    margin: 0 0 10px 20px;
+    width: 600px;
+    height: 200px;
+    text-align: left;
+}
+
+#create-message-btn{
+    margin: 0 0 10px 133px;
+    clear: left;
+    border: 2px solid #42b0ed;
+    color: white;
+    background-color: #42b0ed;
+    width: 150px;
+    height: 40px;
+    font-weight: bold;
+}

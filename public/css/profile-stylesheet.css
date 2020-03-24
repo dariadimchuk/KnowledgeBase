@@ -332,3 +332,66 @@ div.discussions-section {
     margin-top: 10rem;
     font-size: 27px;
 }
+
+/* User profiles */
+
+.user-header{
+    width: 55%;
+    margin: 50px 0 0 15%;
+}
+
+.left-header{
+    font-family: Roboto;
+    float: left;
+    font-size: x-large;
+}
+
+.left-header object{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.right-header{
+    margin-top: 30%;
+    float: right;
+    font-family: Roboto;
+    font-size: large;
+}
+
+.right-header button{
+    width: 110px;
+    height: 40px;
+    color: white;
+    background-color: #0d8ba9;
+    border: 1px solid #0b7891;
+    font-size: large;
+}
+
+.right-header p{
+    color: #0d8ba9;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.right-header img{
+    width: 20px;
+    height: 20px;
+}
+
+.user-posts{
+    padding-top: 15px;
+    clear: left;
+    font-family: Roboto;
+    font-size: large;
+    width: 55%;
+    margin-left: 15%;
+}
+
+.all-user-posts{
+    padding:10px 0 0 20%;
+}
+
+
