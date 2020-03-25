@@ -1,4 +1,5 @@
 <section class="container">
+    
     {{#if post}}
         {{#each post}}
             <div class="discussion">
@@ -19,26 +20,35 @@
                             <button class="replyButton" type="submit" onClick="toggleReplies()" value="{{this.numReplies}} replies">{{this.numReplies}} replies</button>
                         </form> 
                     </div>
-                    <div id="show-replies">
-                        <!-- Uncomment the below code after back-end is in place -->
-                        {{!>reply-partial}} 
-                        <!-- Uncomment the above code after back-end is in place -->
-                    </div>
-                    <!-- START OF: hardcoded the reply section for now -->
-                    <div class="reply-section">
-                        <div class="reply-profile">
-                            <a href="/profile/{{this.profileID}}">
-                                <object data="{{this.profileImage}}">
-                                    <img src="/media/default-img.png" alt="Default Profile" />
-                                </object>
-                            </a>
+                    
+                    {{#if this.replies}}
+
+                        <div id="show-replies">
+                            <!-- Uncomment the below code after back-end is in place -->
+                            {{>reply-partial}} 
+                            <!-- Uncomment the above code after back-end is in place -->
                         </div>
-                        <div class="reply-content">
-                            {{this.content}}
-                        </div>
-                    </div>
-                    {{>add-reply-partial}}                
-                    <!-- END OF: hardcoded the reply section for now -->
+                        <!-- START OF: the reply section -->
+
+                        {{#each this.replies}}
+                            <div class="reply-section">
+                                <div class="reply-profile">
+                                    <a href="/profile/{{this.profileID}}">
+                                        <object data="{{this.profileImage}}">
+                                            <img src="/media/default-img.png" alt="Default Profile" />
+                                        </object>
+                                    </a>
+                                </div>
+                                <div class="reply-content">
+                                    {{this.content}}
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{/if}}
+                    
+                    {{>add-reply-partial}}
+
+                    <!-- END OF: the reply section -->
                 </div>
             </div>
         {{/each}}
@@ -47,6 +57,5 @@
         <br>
         <div id="empty-posts">Sorry, no more posts found!</div>
     {{/if}}
-
 
 </section>

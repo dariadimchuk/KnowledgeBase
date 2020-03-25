@@ -48,7 +48,8 @@ exports.getProfile = async (req,res,next) => {
     let repliesHasAny = replies && replies[0] && replies[0].length > 0;
 
     let repliesByPostIDs = [];
-    
+    let posts = discussion[0];
+
     if(repliesHasAny){
         //group replies based on post ID
         repliesByPostIDs = replies[0].reduce(function(map, obj) {
@@ -65,14 +66,19 @@ exports.getProfile = async (req,res,next) => {
             return map;
         }, {});
     }
+
+
+    //attach replies to each post
+    posts.forEach(element => {
+        element.replies = repliesByPostIDs[element.postID];
+    });
     
     //finally grab all that data & pass to front end
     res.render('main-profile', 
         { 
             profileId: id,
             profile: JSON.parse(JSON.stringify(profile[0][0])), //Vincent - changed, hbs were not able to access profile data before change
-            post: discussion[0],
-            replies: repliesByPostIDs,
+            post: posts,
             profileCSS: true ,
             disablePrev: disablePrevBtn,
             disableNext: disableNextBtn
