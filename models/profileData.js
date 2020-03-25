@@ -135,6 +135,41 @@ const addLike = (profileID) => {
     return db.execute(`UPDATE profile SET numLikes = numLikes + 1 WHERE profileID='${profileID}'`)
 }
 
+
+
+//helper function
+
+async function getRepliesToPosts(postIds){
+
+    //get all replies for the posts on this page
+    let replies = postIds.length > 0 ? await getManyPostReplies(postIds) : [];
+    let repliesHasAny = replies && replies[0] && replies[0].length > 0;
+
+    let repliesByPostIDs = [];
+
+    if(repliesHasAny){
+        //group replies based on post ID
+        repliesByPostIDs = replies[0].reduce(function(map, obj) {
+            let existingVal = map[obj.postID];
+            
+            let val = new Array();
+            if(existingVal){
+                val = existingVal;
+            }
+    
+            val.push(obj);
+    
+            map[obj.postID] = val;
+            return map;
+        }, {});
+    }
+
+    return repliesByPostIDs;
+}
+
+
+
+
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
@@ -152,5 +187,7 @@ module.exports = {
     addMessage : addMessage,
     allConvoMessages : getAllMessagesInConversation,
     addLike: addLike,
-    userPosts: getUserPosts
+    userPosts: getUserPosts,
+
+    getRepliesToPostsByIds: getRepliesToPosts
 }

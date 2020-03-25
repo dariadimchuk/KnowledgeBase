@@ -44,33 +44,13 @@ exports.getProfile = async (req,res,next) => {
     let postIds = discussionHasAny ? discussion[0].map(function(v){ return v.postID; }) : [];
 
     //get all replies for the posts on this page
-    let replies = postIds.length > 0 ? await profileModel.getManyPostReplies(postIds) : [];
-    let repliesHasAny = replies && replies[0] && replies[0].length > 0;
+    let replies = await profileModel.getRepliesToPostsByIds(postIds);
 
-    let repliesByPostIDs = [];
     let posts = discussion[0];
-
-    if(repliesHasAny){
-        //group replies based on post ID
-        repliesByPostIDs = replies[0].reduce(function(map, obj) {
-            let existingVal = map[obj.postID];
-            
-            let val = new Array();
-            if(existingVal){
-                val = existingVal;
-            }
     
-            val.push(obj);
-    
-            map[obj.postID] = val;
-            return map;
-        }, {});
-    }
-
-
     //attach replies to each post
     posts.forEach(element => {
-        element.replies = repliesByPostIDs[element.postID];
+        element.replies = replies[element.postID];
     });
     
     //finally grab all that data & pass to front end
