@@ -1,17 +1,24 @@
 let profileModel = require('../models/profileData');
 
-var skip = 0;
-var take = 5;
 
+exports.getAllPosts = async (req, res, next) => {
+    let posts = await profileModel.allPosts()
+    
+    //get all post ids
+    let postIds = posts ? posts[0].map(function(v){ return v.postID; }) : [];
 
-exports.getAllPosts = (req, res, next) => {
-    let posts = profileModel.allPosts()
-    posts.then( ([data, metadata]) => {
-        res.render('all-posts-profile', {
-            post: data, 
-            profileCSS: true
-        }); // Shasha: changed from res.send(data) to this
-    })
+    //get all replies
+    let replies = await profileModel.getRepliesToPostsByIds(postIds);
+    
+    //attach replies to each post
+    posts[0].forEach(element => {
+        element.replies = replies[element.postID];
+    });
+    
+    res.render('all-posts-profile', {
+        post: posts[0], 
+        profileCSS: true
+    }); // Shasha: changed from res.send(data) to this
 }
 
 
