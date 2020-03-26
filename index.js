@@ -5,6 +5,15 @@ let bodyParser = require('body-parser');
 let db = require('./util/database');
 
 const expressHbs = require('express-handlebars');
+
+const Handlebars = require("handlebars");
+
+Handlebars.registerHelper('if-equals', function (a, b, options) {
+  if (a == b) { return options.fn(this); }
+  return options.inverse(this);
+});
+
+
 app.engine(
     'hbs',
     expressHbs({

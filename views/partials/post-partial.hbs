@@ -16,20 +16,29 @@
                         <a href="/profile/{{this.profileID}}" id="topic">{{this.category}}</a>
                         <p class="post-reply">{{this.content}}</p>
                         <p class="post-reply" id="date">{{this.postDate}}</p>
-                        <form action="/post/{{this.postID}}" method="GET">
-                            <button class="replyButton" type="submit" onClick="toggleReplies()" value="{{this.numReplies}} replies">{{this.numReplies}} replies</button>
-                        </form> 
                     </div>
                     
-                    {{#if this.replies}}
+                    
+                    <!-- START OF: the reply section -->
+                    
+                    <button class="replyButton" onclick="toggle()">
+                        <!-- custom ifequals template made (see index.js) -->
+                        {{#if-equals this.numReplies 0}}
+                            reply
+                        {{else}}
+                            {{#if-equals this.numReplies 1}}
+                                {{this.numReplies}} reply
+                            {{else}}
+                                {{this.numReplies}} replies
+                            {{/if-equals}}
+                        {{/if-equals}}    
+                    </button>
 
-                        <div id="show-replies">
-                            <!-- Uncomment the below code after back-end is in place -->
-                            {{>reply-partial}} 
-                            <!-- Uncomment the above code after back-end is in place -->
-                        </div>
-                        <!-- START OF: the reply section -->
-
+                    <div class="all-replies hidden"> <!-- hide replies by default -->
+                        {{!-- <div id="show-replies">
+                            {{>reply-partial}}
+                        </div> --}}
+                        
                         {{#each this.replies}}
                             <div class="reply-section">
                                 <div class="reply-profile">
@@ -44,11 +53,13 @@
                                 </div>
                             </div>
                         {{/each}}
-                    {{/if}}
-                    
-                    {{>add-reply-partial}}
 
+                        
+                        {{>reply-partial}}
+                    </div>
+                    
                     <!-- END OF: the reply section -->
+
                 </div>
             </div>
         {{/each}}

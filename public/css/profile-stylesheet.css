@@ -232,6 +232,13 @@ div.discussions-section {
     float: right;
     margin-top: 10px;
     margin-bottom: 10px;
+    background: none;
+
+    border: none;
+    border-bottom: 2px solid #42b0ed;
+    color: dimgrey;
+
+    cursor: pointer;
 }
 
 .reply-section {
@@ -283,6 +290,10 @@ div.discussions-section {
     text-align: left;
     padding-left: 10px;
     float: right;
+}
+
+.comment-btn{
+    cursor: pointer;
 }
 
 #previousPage {
@@ -395,3 +406,6 @@ div.discussions-section {
 }
 
 
+.hidden {
+    display: none;
+}

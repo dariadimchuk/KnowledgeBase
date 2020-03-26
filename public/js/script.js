@@ -1,11 +1,14 @@
-function toggleReplies() {  // function for post-partial.hbs: trying to unhide reply section 
-    var replies = document.getElementById("show-replies");
-    if (replies.style.display === "none") {
-        replies.style.display = "block";
-    } else {
-        replies.style.display = "none";
-    }
+function toggle(){
+    var post = event.target.parentNode; //discussion-content div
+    var postRepliesSection = post.getElementsByClassName("all-replies")[0];
+    
+    let hidden = postRepliesSection.classList.contains("hidden");
+
+    if(hidden){
+        postRepliesSection.classList.remove("hidden");
+    } else postRepliesSection.classList.add("hidden");
 }
+
 
 function checkEmpty() {  // function for all-messages-profile.hbs: trying to disable/grey out send button when the textarea is empty
     if(document.getElementById("message-area").value.length === 0) {
