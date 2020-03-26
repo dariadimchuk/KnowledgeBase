@@ -13,6 +13,7 @@ exports.getAllPosts = async (req, res, next) => {
     //attach replies to each post
     posts[0].forEach(element => {
         element.replies = replies[element.postID];
+        element.numReplies = replies[element.postID] ? replies[element.postID].length : 0;
     });
     
     res.render('all-posts-profile', {

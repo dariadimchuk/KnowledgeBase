@@ -51,6 +51,7 @@ exports.getProfile = async (req,res,next) => {
     //attach replies to each post
     posts.forEach(element => {
         element.replies = replies[element.postID];
+        element.numReplies = replies[element.postID] ? replies[element.postID].length : 0;
     });
     
     //finally grab all that data & pass to front end

@@ -16,39 +16,49 @@
                         <a href="/profile/{{this.profileID}}" id="topic">{{this.category}}</a>
                         <p class="post-reply">{{this.content}}</p>
                         <p class="post-reply" id="date">{{this.postDate}}</p>
-                        <form action="/post/{{this.postID}}" method="GET">
-                            <button class="replyButton" type="submit" onClick="toggleReplies()" value="{{this.numReplies}} replies">{{this.numReplies}} replies</button>
-                        </form> 
                     </div>
                     
-                    {{#if this.replies}}
-
-                        <div id="show-replies">
-                            <!-- Uncomment the below code after back-end is in place -->
-                            {{>reply-partial}} 
-                            <!-- Uncomment the above code after back-end is in place -->
-                        </div>
-                        <!-- START OF: the reply section -->
-
-                        {{#each this.replies}}
-                            <div class="reply-section">
-                                <div class="reply-profile">
-                                    <a href="/profile/{{this.profileID}}">
-                                        <object data="{{this.profileImage}}">
-                                            <img src="/media/default-img.png" alt="Default Profile" />
-                                        </object>
-                                    </a>
-                                </div>
-                                <div class="reply-content">
-                                    {{this.content}}
-                                </div>
-                            </div>
-                        {{/each}}
-                    {{/if}}
                     
+                    <!-- START OF: the reply section -->
+                    
+                    {{#if this.replies}}
+                        <button class="replyButton" onclick="toggle()">
+                            {{#ifequals this.numReplies 1}} <!-- custom ifequals template made (see index.js) -->
+                                {{this.numReplies}} reply
+                            {{else}}
+                                {{this.numReplies}} replies
+                            {{/ifequals}}    
+                        </button>
+
+                        <div class="all-replies hidden"> <!-- hide replies by default -->
+                            {{!-- <div id="show-replies">
+                                {{>reply-partial}}
+                            </div> --}}
+                            
+                            {{#each this.replies}}
+                                <div class="reply-section">
+                                    <div class="reply-profile">
+                                        <a href="/profile/{{this.profileID}}">
+                                            <object data="{{this.profileImage}}">
+                                                <img src="/media/default-img.png" alt="Default Profile" />
+                                            </object>
+                                        </a>
+                                    </div>
+                                    <div class="reply-content">
+                                        {{this.content}}
+                                    </div>
+                                </div>
+                            {{/each}}
+
+                        </div>
+                        {{/if}}
+                    
+                    <!-- Input for user to add their own reply -->
                     {{>add-reply-partial}}
 
+                    
                     <!-- END OF: the reply section -->
+
                 </div>
             </div>
         {{/each}}
