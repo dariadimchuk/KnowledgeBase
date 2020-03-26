@@ -8,11 +8,10 @@ const expressHbs = require('express-handlebars');
 
 const Handlebars = require("handlebars");
 
-Handlebars.registerHelper('ifequals', function (a, b, options) {
+Handlebars.registerHelper('if-equals', function (a, b, options) {
   if (a == b) { return options.fn(this); }
   return options.inverse(this);
 });
-
 
 
 app.engine(

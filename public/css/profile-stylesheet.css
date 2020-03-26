@@ -292,6 +292,10 @@ div.discussions-section {
     float: right;
 }
 
+.comment-btn{
+    cursor: pointer;
+}
+
 #previousPage {
     border: 2px solid #42b0ed;
     color: #42b0ed;
