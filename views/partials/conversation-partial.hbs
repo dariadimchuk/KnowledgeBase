@@ -1,5 +1,5 @@
 {{#each conversation}}
-    <div class="individual-convo" onclick="showMessages('{{this.convoID}}')">
+    <div class="individual-convo">
         <li class="convo-sender-image">
             <a href="/profile/{{this.profileID}}">
                 <object data="{{this.profileImage}}">
@@ -8,9 +8,11 @@
             </a>
         </li>
         <li class="convo-sender-info">
-            <h4><span id="name">{{this.firstName}} {{this.lastName}}</span><br>
-            <span id="subject">{{this.subject}}</span></h4>
-            <p id="date">{{this.convoDate}}</p> <!-- Hardcoded for now -->
-        </li>
-    </div>    
+            <a href="/message/{{this.convoID}}">
+                <h4><span id="name">{{this.firstName}} {{this.lastName}}</span><br>
+                <span id="subject">{{this.subject}}</span></h4>
+                <p class="convo-date">{{this.convoDate}}</p>
+            </a>    
+        </li> 
+    </div>
 {{/each}}

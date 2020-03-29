@@ -1,6 +1,6 @@
 {{#each message}}
     <div class="individual-message">
-        <h3><span>{{this.messageDate}}</span></h3>
+        <h3><span class="message-date">{{this.messageDate}}</span></h3>
         <li class="message-author-image">
             <a href="/profile/{{this.profileID}}">
                 <object data="{{this.profileImage}}">
@@ -9,7 +9,7 @@
             </a>
         </li>
         <li class="message-author-info">
-            <p><span id="name">{{this.firstName}} {{this.lastName}}</span> • 9:03 AM<br><br>
+            <p><span id="name">{{this.firstName}} {{this.lastName}}</span> • <span class="message-time">{{this.messageDate}}</span><br><br>
             <span id="content">{{this.content}}</span></p>
         </li>
     </div>

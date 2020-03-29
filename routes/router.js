@@ -13,6 +13,8 @@ router.route('/profile/:profileID')
 router.get('/profile/user/:profileID', profileController.getUserProfile);
 router.get('/addLike/:profileID', profileController.addLike);
 router.get('/profile/user/:profileID/newMessage', profileController.createNewMessage)
+router.get('/profile/edit/:profileID', profileController.getEditProfile);
+router.post('/edit/:profileID', profileController.postEditProfile);
 
 // LOGIN
 router.post('/login', loginController.verifyLogin)
