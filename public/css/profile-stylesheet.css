@@ -216,12 +216,13 @@ div.discussions-section {
     pointer-events: none;
 }
 
-.post-reply {
+#post-reply {
     margin: 10px 0 10px 15px;
 }
 
-#date {
+.post-date {
     display: inline;
+    margin: 10px 0 10px 15px;
 }
 
 #show-replies {
@@ -408,4 +409,39 @@ div.discussions-section {
 
 .hidden {
     display: none;
+}
+
+/* All Posts */
+.all-posts {
+    color: dimgrey;
+}
+
+/* Edit Profile */
+.edit-profile {
+    width: 500px;
+    margin-top: 100px;
+    color: dimgrey;
+}
+
+label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#edit-profile-textarea {
+    width: 70%;
+    height: 30px;
+    margin: 8px 8px 25px 8px;
+    padding-left: 10px;
+}
+
+#submit-edit {
+    display: flex;
+    float: right;
+    width: 85px;
+    height: 35px;
+    background-color: #42b0ed;
+    color: white;
+    border: none;
+    margin-right: 130px;
 }

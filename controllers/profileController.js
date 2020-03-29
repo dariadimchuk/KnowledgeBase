@@ -109,3 +109,37 @@ exports.createNewMessage = (req, res) => {
             });
     });
 }
+
+//Shasha: editing profile
+exports.getEditProfile = (req,res,next) => {
+    let id = req.params.profileID;
+    
+    let Profile = profileModel.getProfile(id);
+    Profile.then(([data, metadata]) => {
+        res.render('edit-profile', 
+            { 
+                profile: data[0],
+                profileCSS: true
+            });
+   });
+}
+
+exports.postEditProfile = (req, res, next) => {
+    let profileID = req.params.profileID;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let profileImage = req.body.profileImage;
+    let country = req.body.country;
+    let DOB = req.body.DOB;
+    let about = req.body.about;
+    
+    let newProfile = profileModel.editProfile(profileID, firstName, lastName, profileImage, country, DOB, about);
+
+    newProfile.then( ([data, metadata]) => {
+        res.render('main-profile',
+            {
+                profile: data[0],
+                profileCSS: true
+            });
+    });
+}

@@ -55,7 +55,7 @@
     width: 100%;
 }
 
-.convo-sender-info h4, .convo-sender-info #date {
+.convo-sender-info h4, .convo-sender-info .convo-date {
     display: inline;
     vertical-align: top;
 }
@@ -77,7 +77,7 @@
     text-overflow: ellipsis;
 }
 
-.convo-sender-info #date {
+.convo-sender-info .convo-date {
     float: right;
     margin-top: 22px;
     margin-right: 25px;

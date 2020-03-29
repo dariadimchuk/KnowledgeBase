@@ -74,6 +74,21 @@ const confirmNewProfile = (imgurl, about, dob, country, profileId) => {
     ],function(error, results){});
 }
 
+//Shasha: added for editing profile
+function editProfile(profileID, firstName, lastName, profileImage, country, DOB, about) {
+    let sql = `UPDATE profile SET firstName = '${firstName}', lastName = '${lastName}', profileImage = '${profileImage}', country = '${country}', DOB = '${DOB}', about = '${about}' WHERE profileID = '${profileID}'`;
+
+    return db.query(sql,[
+        profileID,
+        firstName,
+        lastName,
+        profileImage,
+        country,
+        DOB,
+        about
+    ],function(error, results){});
+}
+
 const getNumPosts = (profileId) => {
     return db.execute(`SELECT COUNT(*) FROM post WHERE profileID=${profileId}`)
 }
@@ -136,7 +151,6 @@ const addLike = (profileID) => {
 }
 
 
-
 //helper function
 
 async function getRepliesToPosts(postIds){
@@ -170,6 +184,7 @@ async function getRepliesToPosts(postIds){
 
 
 
+
 module.exports = {
     getProfile : getProfile,
     allPosts : getAllPosts,
@@ -180,6 +195,7 @@ module.exports = {
     login : verifyLogin,
     newProfile : addNewProfile,
     confirmProfile : confirmNewProfile,
+    editProfile : editProfile,
     numPosts : getNumPosts,
     search : getSearchResults,
     addConvo : addConversation,
