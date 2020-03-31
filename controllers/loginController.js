@@ -9,6 +9,7 @@ exports.verifyLogin = (req,res) => {
         if (data.length == 0) {
             res.send("Invalid email and/or password.")
         } else {
+            req.session.profileID = data[0].profileID;
             res.redirect(`/profile/${data[0].profileID}`)
         }
     })
@@ -44,5 +45,5 @@ exports.confirmNewProfile = (req,res) => {
 }
 
 exports.logoutUser = (req,res) => {
-    res.redirect('/')
+    req.session.destroy((err) => res.redirect('/'))
 }

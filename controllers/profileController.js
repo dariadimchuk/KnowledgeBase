@@ -97,7 +97,8 @@ exports.addLike = async (req,res,next) => {
 
 exports.createNewMessage = (req, res) => {
     let id = req.params.profileID;
-    
+    req.session.receiverID = id; //receiverid saved to session
+
     let Profile = profileModel.getProfile(id);
     Profile.then(([data, metadata]) =>{
         res.render('new-message',

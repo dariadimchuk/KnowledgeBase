@@ -181,7 +181,9 @@ async function getRepliesToPosts(postIds){
     return repliesByPostIDs;
 }
 
-
+const getEmail = (profileID) => {
+    return db.execute(`SELECT email FROM profile WHERE profileID=${profileID}`)
+}
 
 
 
@@ -204,6 +206,6 @@ module.exports = {
     allConvoMessages : getAllMessagesInConversation,
     addLike: addLike,
     userPosts: getUserPosts,
-
-    getRepliesToPostsByIds: getRepliesToPosts
+    getRepliesToPostsByIds: getRepliesToPosts,
+    email: getEmail
 }

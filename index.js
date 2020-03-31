@@ -3,6 +3,7 @@ let app = express();
 let path = require('path');
 let bodyParser = require('body-parser');
 let db = require('./util/database');
+let session = require('express-session');
 
 const expressHbs = require('express-handlebars');
 
@@ -39,6 +40,9 @@ app.engine(
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+app.use(session({
+  secret: 'mysecret'
+}));
 
 let routes = require('./routes/router');
 app.use(routes);
