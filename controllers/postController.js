@@ -5,7 +5,7 @@ exports.getAllPosts = async (req, res, next) => {
     let id = req.params.profileID;
 
     let posts = await profileModel.userPosts(id);
-    let profile = await profileModel.getProfile(id);
+    let profile = (await profileModel.getProfile(id))[0][0];
     
     //get all post ids
     let postIds = posts ? posts[0].map(function(v){ return v.postID; }) : [];
@@ -21,7 +21,7 @@ exports.getAllPosts = async (req, res, next) => {
 
 
     res.render('all-posts-profile', {
-        profile: JSON.parse(JSON.stringify(profile[0][0])),
+        profile: profile,
         post: posts[0], 
         profileCSS: true
     }); // Shasha: changed from res.send(data) to this

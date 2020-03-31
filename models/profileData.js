@@ -90,7 +90,7 @@ function editProfile(profileID, firstName, lastName, profileImage, country, DOB,
 }
 
 const getNumPosts = (profileId) => {
-    return db.execute(`SELECT COUNT(*) FROM post WHERE profileID=${profileId}`)
+    return db.execute(`SELECT COUNT(*) AS numPosts FROM post WHERE profileID=${profileId}`)
 }
 
 const getSearchResults = (keywords) => {
