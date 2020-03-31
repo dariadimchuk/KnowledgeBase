@@ -1,7 +1,14 @@
+.whole-page {
+    background-color: skyblue;
+}
+
 /*Left-side panel*/
 .split-left {
     width: 30%;
-    position: fixed;
+    min-height: 0;
+    height: 100%;
+    position: absolute;
+    display: flex;
     margin-left: 10%;
     margin-top: 200px;
     margin-bottom: 200px;
@@ -68,11 +75,12 @@
 /*Right-side panel*/
 .split-right {
     width: 50%;
-    position: fixed;
+    min-height: 0;
+    height: 100%;
+    position: absolute;
     margin-right: 10%;
     margin-top: 50px;
     right: 0;
-    overflow-x: hidden;
     font-family: 'Roboto';
 }
 
@@ -153,9 +161,7 @@
 div.discussions-section {
     color: dimgrey;
     margin-top: 30px;
-    height: 400px;
     width: 700px;
-    overflow: auto; 
     text-align: justify;
 }
 
@@ -303,7 +309,7 @@ div.discussions-section {
     background-color: white;
     width: 75px;
     height: 30px;
-    margin-top: 15px;
+    margin: 15px 0px 200px 0px;
 }
 
 #nextPage {
@@ -312,7 +318,8 @@ div.discussions-section {
     background-color: white;
     width: 75px;
     height: 30px;
-    margin: 15px 0px 0px 500px;
+    margin: 15px 0px 200px 500px;
+    position: absolute;
 }
 
 .searchedPosts{
