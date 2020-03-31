@@ -20,7 +20,7 @@ exports.addConversation = (req,res) => {
 }
 
 exports.getAllConversations = (req,res) => {
-    let userID = req.params.profileID   // ID of current user
+    let userID = req.session.profileID   // ID of current user
 
     let convos = profileModel.allConvos(userID)
     convos.then( ([data, metadata]) => {
@@ -46,15 +46,17 @@ exports.addMessage = (req,res) => {
     })
 }
 
-exports.getAllMessagesInConvo = (req,res) => {
-    // let convoId = req.body.convoId
+exports.getAllMessagesInConvo = async (req,res) => {
     let convoId = req.params.convoID
+    let profileId = req.session.profileID
 
-    let messages = profileModel.allConvoMessages(convoId)
-    messages.then( ([data, metadata]) => {
-        res.render('partials/message-partial', {
-            message: data,
-            messageCSS: true
-        })
+    let messages = await profileModel.allConvoMessages(convoId)
+
+    let convos = await profileModel.allConvos(profileId)
+    res.render('all-messages-profile', {
+        messageCSS: true,
+        conversation: convos[0],
+        message: messages[0]
     })
+
 }

@@ -31,9 +31,9 @@ router.post('/post/:profileID', postController.addPost);
 router.post('/search', searchController.searchPosts)
 
 // MESSAGE
-router.get('/conversation/:profileID', messageController.getAllConversations)
+router.get('/conversations', messageController.getAllConversations)
 router.post('/addConversation', messageController.addConversation) // will change to POST to match frontend
 router.get('/addMessage', messageController.addMessage) // will change to POST to match frontend
-router.get('/message/:convoID', messageController.getAllMessagesInConvo)
+router.get('/conversations/:convoID', messageController.getAllMessagesInConvo) //replaced message/:convoID
 
 module.exports = router;
