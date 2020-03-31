@@ -1,4 +1,5 @@
 let profileModel = require('../models/profileData')
+let emailController = require('./emailController')
 
 exports.addConversation = (req,res) => {
     let senderID = req.session.profileID
@@ -6,17 +7,13 @@ exports.addConversation = (req,res) => {
     let subject = req.body.subject
     let content = req.body.message
 
-    // let senderID = 2
-    // let receiverID = 3
-    // let subject = 'Conversation 3'
-    // let content = 'First message of convo 3'
+    emailController.sendEmail(req, res); //Sends an email to message recipient
 
     let convo = profileModel.addConvo(senderID, receiverID, subject)
     convo.then( ([data, metadata]) => {
         let convoID = data.insertId
         let message = profileModel.addMessage(convoID, senderID, content)
         message.then( ([data, metadata]) => {
-            // res.send(data)
             res.redirect(`/profile/user/${receiverID}`)
         })
     })
@@ -61,14 +58,3 @@ exports.getAllMessagesInConvo = (req,res) => {
         })
     })
 }
-
-// exports.sendEmail = (req,res,next) => {
-//     let keywords = req.body.searched_words;
-//     let results = profileModel.search(keywords);
-//     results.then(([data, metadata]) => {
-//         res.render('searched-posts', {
-//             post: data,
-//             profileCSS: true
-//         })
-//     })
-// }

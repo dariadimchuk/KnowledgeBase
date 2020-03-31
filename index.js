@@ -4,6 +4,7 @@ let path = require('path');
 let bodyParser = require('body-parser');
 let db = require('./util/database');
 let session = require('express-session');
+var nodemailer = require('nodemailer')
 
 const expressHbs = require('express-handlebars');
 
