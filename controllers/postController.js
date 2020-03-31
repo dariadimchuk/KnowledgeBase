@@ -16,7 +16,12 @@ exports.getAllPosts = async (req, res, next) => {
         element.numReplies = replies[element.postID] ? replies[element.postID].length : 0;
     });
     
+
+    let id = req.params.profileID;
+    let profile = await profileModel.getProfile(id);
+
     res.render('all-posts-profile', {
+        profile: JSON.parse(JSON.stringify(profile[0][0])),
         post: posts[0], 
         profileCSS: true
     }); // Shasha: changed from res.send(data) to this
