@@ -31,6 +31,9 @@ exports.getProfile = async (req,res,next) => {
     
     //get profile info
     let profile = await profileModel.getProfile(id);
+    
+    //store user's name in session
+    req.session.fullName = `${profile[0][0].firstName} ${profile[0][0].lastName}`
 
     //get all recent posts on this page
     let discussion = await profileModel.getLatestPosts(skip, take);
@@ -77,7 +80,7 @@ exports.getUserProfile = (req,res,next) => {
     allUserPosts.then( ([allUserPosts, metadata]) => {
         let Profile = profileModel.getProfile(id);
         Profile.then( ([data, metadata]) => {
-            
+
             res.render('user-profile', 
                 { 
                     profile: data[0],
@@ -97,7 +100,8 @@ exports.addLike = async (req,res,next) => {
 
 exports.createNewMessage = (req, res) => {
     let id = req.params.profileID;
-    
+    req.session.receiverID = id; //receiverid saved to session
+
     let Profile = profileModel.getProfile(id);
     Profile.then(([data, metadata]) =>{
         res.render('new-message',

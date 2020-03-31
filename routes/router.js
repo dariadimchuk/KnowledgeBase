@@ -32,7 +32,7 @@ router.post('/search', searchController.searchPosts)
 
 // MESSAGE
 router.get('/conversation/:profileID', messageController.getAllConversations)
-router.get('/addConversation', messageController.addConversation) // will change to POST to match frontend
+router.post('/addConversation', messageController.addConversation) // will change to POST to match frontend
 router.get('/addMessage', messageController.addMessage) // will change to POST to match frontend
 router.get('/message/:convoID', messageController.getAllMessagesInConvo)
 

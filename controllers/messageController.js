@@ -1,22 +1,20 @@
 let profileModel = require('../models/profileData')
+let emailController = require('./emailController')
 
 exports.addConversation = (req,res) => {
-    // let senderID = req.body.senderId
-    // let receiverID = req.body.receiverId
-    // let subject = req.body.subject
-    // let content = req.body.message
+    let senderID = req.session.profileID
+    let receiverID = req.session.receiverID
+    let subject = req.body.subject
+    let content = req.body.message
 
-    let senderID = 2
-    let receiverID = 3
-    let subject = 'Conversation 3'
-    let content = 'First message of convo 3'
+    emailController.sendEmail(req, res); //Sends an email to message recipient
 
     let convo = profileModel.addConvo(senderID, receiverID, subject)
     convo.then( ([data, metadata]) => {
         let convoID = data.insertId
         let message = profileModel.addMessage(convoID, senderID, content)
         message.then( ([data, metadata]) => {
-            res.send(data)
+            res.redirect(`/profile/user/${receiverID}`)
         })
     })
 }
@@ -35,7 +33,7 @@ exports.getAllConversations = (req,res) => {
 
 exports.addMessage = (req,res) => {
     // let convoID = req.body.convoId
-    // let senderID = req.body.senderId
+    // let senderID = req.session.profileID
     // let content = req.body.content
 
     let convoID = 3

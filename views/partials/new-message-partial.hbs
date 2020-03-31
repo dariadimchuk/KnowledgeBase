@@ -3,9 +3,9 @@
         <img src="/media/default-img.png" alt="Default Profile" />
     </object>
     
-    <form> {{!Vincent-- action="" method="POST" --}}
-        <input id="message-subject" type="text" placeholder="subject">
-        <textarea id="message-details" type="text" placeholder="message details..."></textarea></br>
+    <form action="/addConversation" method="POST"> 
+        <input id="message-subject" name="subject" type="text" placeholder="subject">
+        <textarea id="message-details" name="message" type="text" placeholder="message details..."></textarea></br>
         <button id="create-message-btn" type="submit">Message</button>
     </form>
 </div>
