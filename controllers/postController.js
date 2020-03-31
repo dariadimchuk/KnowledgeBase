@@ -2,7 +2,10 @@ let profileModel = require('../models/profileData');
 
 
 exports.getAllPosts = async (req, res, next) => {
-    let posts = await profileModel.allPosts()
+    let id = req.params.profileID;
+
+    let posts = await profileModel.userPosts(id);
+    let profile = await profileModel.getProfile(id);
     
     //get all post ids
     let postIds = posts ? posts[0].map(function(v){ return v.postID; }) : [];
@@ -15,10 +18,7 @@ exports.getAllPosts = async (req, res, next) => {
         element.replies = replies[element.postID];
         element.numReplies = replies[element.postID] ? replies[element.postID].length : 0;
     });
-    
 
-    let id = req.params.profileID;
-    let profile = await profileModel.getProfile(id);
 
     res.render('all-posts-profile', {
         profile: JSON.parse(JSON.stringify(profile[0][0])),
