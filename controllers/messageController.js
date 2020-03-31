@@ -20,7 +20,7 @@ exports.addConversation = (req,res) => {
 }
 
 exports.getAllConversations = (req,res) => {
-    let userID = req.params.profileID   // ID of current user
+    let userID = req.session.profileID   // ID of current user
 
     let convos = profileModel.allConvos(userID)
     convos.then( ([data, metadata]) => {

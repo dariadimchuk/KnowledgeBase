@@ -112,6 +112,7 @@ const getAllConvos = (userID) => {
     // If user = sender, return receiver info, else return sender info
     return db.execute(`
     SELECT c.convoID, c.subject, c.convoDate,
+    IF(c.senderID = ${userID}, s.profileID, r.profileID) as userID,
         IF(c.senderID = ${userID}, r.profileID, s.profileID) as profileID,
         IF(c.senderID = ${userID}, r.firstName, s.firstName) as firstName,
         IF(c.senderID = ${userID}, r.lastName, s.lastName) as lastName,
