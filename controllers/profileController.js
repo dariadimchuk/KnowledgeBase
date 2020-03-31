@@ -30,10 +30,14 @@ exports.getProfile = async (req,res,next) => {
     
     
     //get profile info
-    let profile = await profileModel.getProfile(id);
+    let profile = (await profileModel.getProfile(id))[0][0];
+    
+    //set number of posts user has
+    let postNums = (await profileModel.numPosts(id))[0][0];
+    profile.numPosts = postNums.numPosts;
     
     //store user's name in session
-    req.session.fullName = `${profile[0][0].firstName} ${profile[0][0].lastName}`
+    req.session.fullName = `${profile.firstName} ${profile.lastName}`
 
     //get all recent posts on this page
     let discussion = await profileModel.getLatestPosts(skip, take);
@@ -61,7 +65,7 @@ exports.getProfile = async (req,res,next) => {
     res.render('main-profile', 
         { 
             profileId: id,
-            profile: JSON.parse(JSON.stringify(profile[0][0])), //Vincent - changed, hbs were not able to access profile data before change
+            profile: profile,
             post: posts,
             profileCSS: true ,
             disablePrev: disablePrevBtn,

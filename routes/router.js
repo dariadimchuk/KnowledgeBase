@@ -23,7 +23,7 @@ router.post('/confirm-signup', loginController.confirmNewProfile)
 router.get('/logout', loginController.logoutUser)
 
 // POST
-router.get('/post', postController.getAllPosts)
+router.get('/allposts/:profileID', postController.getAllPosts)
 router.get('/post/:postID', postController.getRepliesToPost)
 router.post('/post/:profileID', postController.addPost);
 
