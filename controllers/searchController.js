@@ -10,3 +10,16 @@ exports.searchPosts = (req,res,next) => {
         })
     })
 }
+
+exports.filterPosts = (req,res) => {
+    let topic = req.body.postcategory
+
+    let results = profileModel.filter(topic)
+    results.then( ([data, metadata]) => {
+        res.render('searched-posts', {
+            post: data,
+            profileCSS: true
+        })
+    })
+
+}

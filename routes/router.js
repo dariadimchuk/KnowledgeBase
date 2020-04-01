@@ -25,10 +25,12 @@ router.get('/logout', loginController.logoutUser)
 // POST
 router.get('/allposts/:profileID', postController.getAllPosts)
 router.get('/post/:postID', postController.getRepliesToPost)
-router.post('/post/:profileID', postController.addPost);
+router.post('/newPost', postController.addNewPost);
+router.post('/reply/:postID', postController.addReply)
 
 // SEARCH
 router.post('/search', searchController.searchPosts)
+router.post('/filter', searchController.filterPosts)
 
 // MESSAGE
 router.get('/conversations', messageController.getAllConversations)
