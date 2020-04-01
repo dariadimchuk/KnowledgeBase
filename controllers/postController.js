@@ -7,6 +7,10 @@ exports.getAllPosts = async (req, res, next) => {
     let posts = await profileModel.userPosts(id);
     let profile = (await profileModel.getProfile(id))[0][0];
     
+    //set number of posts user has
+    let postNums = (await profileModel.numPosts(id))[0][0];
+    profile.numPosts = postNums.numPosts;
+
     //get all post ids
     let postIds = posts ? posts[0].map(function(v){ return v.postID; }) : [];
 
