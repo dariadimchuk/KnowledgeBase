@@ -37,16 +37,29 @@ exports.getRepliesToPost = (req, res, next) => {
 }
 
 
-exports.addPost = (req, res, next) => {
-    let id = req.params.profileID;
-    let title = req.body.posttitle;
-    let category = req.body.postcategory;
-    let content = req.body.postbody;
+exports.addNewPost = async (req, res) => {
+    let id = req.session.profileID
+    let title = req.body.posttitle
+    let category = req.body.postcategory
+    let content = req.body.postbody
 
-    let posts = profileModel.addPost(id, title, category, content);
+    let image = await profileModel.profilePic(id)
+    let imageurl = image[0][0].profileImage
 
-    posts.then( ([data, metadata]) => {
-        res.send(data)
-    });
+    await profileModel.addPost(id, imageurl, title, category, content);
 
+    res.redirect(`/profile/${id}`)
+}
+
+exports.addReply = async (req, res) => {
+    let id = req.session.profileID
+    let postId = req.params.postID
+    let content = req.body.postBody
+
+    let image = await profileModel.profilePic(id)
+    let imageurl = image[0][0].profileImage
+
+    await profileModel.replyToPost(postId, id, imageurl, content)
+
+    res.redirect(`/profile/${id}`)
 }

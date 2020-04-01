@@ -1,19 +1,33 @@
 let db = require('../util/database');
 
-function addPost(profileID, title, category, content) {
-    let date = new Date().toUTCString();
+function addPost(profileID, profileImage, title, category, content) {
 
-    let sql = "INSERT into post (profileID, postDate, title, category, content, numReplies) "
-        + "values (?, ?, ?, ?, ?, ?)";
+    let sql = "INSERT into post (profileID, profileImage, postDate, title, category, content, numReplies) "
+        + "values (?, ?, CURRENT_DATE(), ?, ?, ?, ?)";
 
     return db.query(sql,[
         profileID,
-        date,
+        profileImage,
         title,
         category,
         content,
         0
     ],function(error, results){});
+}
+const addReply = (postID, profileID, profileImage, content) => {
+    let sql = "INSERT INTO reply (postID, profileID, profileImage, replyDate, content) "
+    + "VALUES (?, ?, ?, CURRENT_DATE(), ?)";
+
+    return db.query(sql,[
+        postID,
+        profileID,
+        profileImage,
+        content
+    ],function(error, results){});
+}
+// used for addNewPost and add addReply in postController
+const getProfileImage = (profileID) => {
+    return db.execute(`SELECT profileImage FROM profile WHERE profileID=${profileID}`)
 }
 
 function getProfile(profileID) {
@@ -94,7 +108,11 @@ const getNumPosts = (profileId) => {
 }
 
 const getSearchResults = (keywords) => {
-    return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%'")
+    return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%' ORDER BY postDate DESC")
+}
+
+const getFilterResults = (category) => {
+    return db.execute(`SELECT * FROM post WHERE category='${category}' ORDER BY postDate DESC`)
 }
 
 const addConversation = (senderID, receiverID, subject) => {
@@ -202,6 +220,7 @@ module.exports = {
     editProfile : editProfile,
     numPosts : getNumPosts,
     search : getSearchResults,
+    filter : getFilterResults,
     addConvo : addConversation,
     allConvos : getAllConvos,
     addMessage : addMessage,
@@ -209,5 +228,7 @@ module.exports = {
     addLike: addLike,
     userPosts: getUserPosts,
     getRepliesToPostsByIds: getRepliesToPosts,
-    email: getEmail
+    email: getEmail,
+    profilePic: getProfileImage,
+    replyToPost: addReply,
 }
