@@ -44,6 +44,10 @@ app.use(bodyParser.json())
 app.use(session({
   secret: 'mysecret'
 }));
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
 let routes = require('./routes/router');
 app.use(routes);

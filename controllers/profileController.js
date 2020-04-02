@@ -39,7 +39,6 @@ exports.getProfile = async (req,res,next) => {
     //set number of conversations user has
     let convosNums = (await profileModel.numConvos(id))[0][0];
     profile.numConvos = convosNums.numConvos;
-    console.log(profile.numConvos);
 
     //store user's name in session
     req.session.fullName = `${profile.firstName} ${profile.lastName}`
