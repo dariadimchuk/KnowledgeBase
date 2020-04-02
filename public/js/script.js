@@ -10,14 +10,19 @@ function toggle(){
 }
 
 
-function checkEmpty() {  // function for all-messages-profile.hbs: trying to disable/grey out send button when the textarea is empty
-    if(document.getElementById("message-area").value.length === 0) {
+function checkEmpty() {  // function for all-messages-profile.hbs
+    if(document.getElementById("message-area").value.length == 0) {
         document.getElementById("submit-btn").disabled = true;
-        document.getElementById.style.background = "#b1b8bd";
     } else {
         document.getElementById("submit-btn").disabled = false;
     }
 }
+
+function init() {
+    document.getElementById("submit-btn").disabled = true;
+}
+
+window.onload=init;
 
 
 // Format Date/Time

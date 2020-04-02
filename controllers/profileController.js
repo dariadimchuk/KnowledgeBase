@@ -118,7 +118,6 @@ exports.createNewMessage = (req, res) => {
     });
 }
 
-//Shasha: editing profile
 exports.getEditProfile = (req,res,next) => {
     let id = req.params.profileID;
     
@@ -142,12 +141,10 @@ exports.postEditProfile = (req, res, next) => {
     let about = req.body.about;
     
     let newProfile = profileModel.editProfile(profileID, firstName, lastName, profileImage, country, DOB, about);
+    newProfile = profileModel.editPost(profileID, profileImage);
+    newProfile = profileModel.editReply(profileID, profileImage);
 
     newProfile.then( ([data, metadata]) => {
-        res.render('main-profile',
-            {
-                profile: data[0],
-                profileCSS: true
-            });
+        res.redirect(`/profile/${profileID}`)
     });
 }

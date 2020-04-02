@@ -88,11 +88,10 @@ const confirmNewProfile = (imgurl, about, dob, country, profileId) => {
     ],function(error, results){});
 }
 
-//Shasha: added for editing profile
 function editProfile(profileID, firstName, lastName, profileImage, country, DOB, about) {
     let sql = `UPDATE profile SET firstName = '${firstName}', lastName = '${lastName}', profileImage = '${profileImage}', country = '${country}', DOB = '${DOB}', about = '${about}' WHERE profileID = '${profileID}'`;
 
-    return db.query(sql,[
+    return db.query(sql, [
         profileID,
         firstName,
         lastName,
@@ -100,6 +99,24 @@ function editProfile(profileID, firstName, lastName, profileImage, country, DOB,
         country,
         DOB,
         about
+    ],function(error, results){});
+}
+
+function editPost(profileID, profileImage) {
+    let sql = `UPDATE post SET profileImage = '${profileImage}' WHERE profileID = '${profileID}'`;
+
+    return db.query(sql, [
+        profileID,
+        profileImage,
+    ],function(error, results){});
+}
+
+function editReply(profileID, profileImage) {
+    let sql = `UPDATE reply SET profileImage = '${profileImage}' WHERE profileID = '${profileID}'`;
+
+    return db.query(sql, [
+        profileID,
+        profileImage,
     ],function(error, results){});
 }
 
@@ -218,6 +235,8 @@ module.exports = {
     newProfile : addNewProfile,
     confirmProfile : confirmNewProfile,
     editProfile : editProfile,
+    editPost : editPost,
+    editReply : editReply,
     numPosts : getNumPosts,
     search : getSearchResults,
     filter : getFilterResults,
