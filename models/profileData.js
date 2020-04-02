@@ -124,6 +124,10 @@ const getNumPosts = (profileId) => {
     return db.execute(`SELECT COUNT(*) AS numPosts FROM post WHERE profileID=${profileId}`)
 }
 
+const getNumConversations = (profileId) => {
+    return db.execute(`SELECT COUNT(*) AS numConvos FROM conversation WHERE senderID=${profileId} OR receiverID=${profileId}`)
+}
+
 const getSearchResults = (keywords) => {
     return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%' ORDER BY postDate DESC")
 }
@@ -238,6 +242,7 @@ module.exports = {
     editPost : editPost,
     editReply : editReply,
     numPosts : getNumPosts,
+    numConvos : getNumConversations,
     search : getSearchResults,
     filter : getFilterResults,
     addConvo : addConversation,
