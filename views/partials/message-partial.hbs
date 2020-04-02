@@ -2,7 +2,7 @@
     <div class="individual-message">
         <h3><span class="message-date">{{this.messageDate}}</span></h3>
         <li class="message-author-image">
-            <a href="/profile/{{this.profileID}}">
+            <a href="/profile/user/{{this.profileID}}">
                 <object data="{{this.profileImage}}">
                     <img src="/media/default-img.png" alt="Default Profile" />
                 </object>
@@ -14,3 +14,11 @@
         </li>
     </div>
 {{/each}}
+<div class="write-message">
+    <form> <!-- action="/message" method="POST" -->
+        <textarea type="text" id="message-area" align="top" wrap="hard" maxlength="255" onblur="checkEmpty()" placeholder="Write a message..."></textarea><br>
+        <div class="button-section">
+            <input id="submit-btn" type="submit" value="Send" onClick="checkEmpty()" />
+        </div>
+    </form>
+</div>
