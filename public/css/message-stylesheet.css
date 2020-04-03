@@ -173,14 +173,14 @@
 }
 
 .write-message {
-    position: inherit;
-    bottom: 12%;
+    position: fixed;
+    bottom: 0%;
     width: 100%;
 }
 
 #message-area {
-    width: 99%;
-    height: 150px;
+    width: 47%;
+    /* height: 150px; */
     font-size: 20px;
     font-family: 'Roboto';
     padding: 10px 0 0 10px;
@@ -200,7 +200,7 @@
 .button-section {
     background-color: #ebf4fa;
     height: 60px;
-    width: 100%;
+    width: 49%;
 }
 
 /* Create Message Form */

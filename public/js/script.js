@@ -22,7 +22,7 @@ function init() {
     document.getElementById("submit-btn").disabled = true;
 }
 
-window.onload=init;
+// window.onload=init; 
 
 
 // Format Date/Time
