@@ -20,7 +20,6 @@ exports.sendEmail = async (req,res) => {
     var mailOptions = {
         from: fromEmail,
         to: toEmail,
-        // to: 'vincentliang_01@hotmail.com',
         subject: req.body.subject,
         text: `Message recieved from ${req.session.fullName}:\n${req.body.message}`
         };

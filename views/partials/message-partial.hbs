@@ -15,10 +15,10 @@
     </div>
 {{/each}}
 <div class="write-message">
-    <form> <!-- action="/message" method="POST" -->
-        <textarea type="text" id="message-area" align="top" wrap="hard" maxlength="255" onblur="checkEmpty()" placeholder="Write a message..."></textarea><br>
+    <form action="/addMessage" method="POST">
+        <textarea rows="4" id="message-area" name="content" placeholder="Write a message..." required></textarea><br>
         <div class="button-section">
-            <input id="submit-btn" type="submit" value="Send" onClick="checkEmpty()" />
+            <button id="submit-btn" type="submit">Send</button>
         </div>
     </form>
 </div>

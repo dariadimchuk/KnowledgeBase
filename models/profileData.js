@@ -124,6 +124,18 @@ const getNumPosts = (profileId) => {
     return db.execute(`SELECT COUNT(*) AS numPosts FROM post WHERE profileID=${profileId}`)
 }
 
+const updateNumPosts = (profileId, numPosts) => {
+    return db.execute(`UPDATE profile SET numPosts = ${numPosts} WHERE profileID=${profileId}`)
+}
+
+const getNumConversations = (profileId) => {
+    return db.execute(`SELECT COUNT(*) AS numConvos FROM conversation WHERE senderID=${profileId} OR receiverID=${profileId}`)
+}
+
+const updateNumMessages = (profileId, numConvos) => {
+    return db.execute(`UPDATE profile SET numMessages = ${numConvos} WHERE profileID=${profileId}`)
+}
+
 const getSearchResults = (keywords) => {
     return db.execute("Select * from post WHERE title LIKE " + "'%" + keywords + "%' ORDER BY postDate DESC")
 }
@@ -238,6 +250,9 @@ module.exports = {
     editPost : editPost,
     editReply : editReply,
     numPosts : getNumPosts,
+    updateNumPosts: updateNumPosts,
+    numConvos : getNumConversations,
+    updateNumMessages: updateNumMessages,
     search : getSearchResults,
     filter : getFilterResults,
     addConvo : addConversation,
