@@ -6,7 +6,7 @@ exports.addConversation = (req,res) => {
     let receiverID = req.session.receiverID
     let subject = req.body.subject
     let content = req.body.message
-
+    
     emailController.sendEmail(req, res); //Sends an email to message recipient
 
     let convo = profileModel.addConvo(senderID, receiverID, subject)
@@ -24,7 +24,7 @@ exports.getAllConversations = (req,res) => {
     
     let convos = profileModel.allConvos(userID)
     convos.then( ([data, metadata]) => {
-        res.render('all-messages-profile', {
+        res.render('all-conversations', {
             conversation: data,
             messageCSS: true
         })
@@ -32,23 +32,21 @@ exports.getAllConversations = (req,res) => {
 }
 
 exports.addMessage = (req,res) => {
-    // let convoID = req.body.convoId
-    // let senderID = req.session.profileID
-    // let content = req.body.content
+    let convoId = req.session.convoId
+    let senderId = req.session.profileID
+    let content = req.body.content
 
-    let convoID = 3
-    let senderID = 2
-    let content = 'goodbye hello!'
+    let message = profileModel.addMessage(convoId, senderId, content)
 
-    let message = profileModel.addMessage(convoID, senderID, content)
     message.then( ([data, metadata]) => {
-        res.send(data)
+        res.redirect(`/conversations/${convoId}`)
     })
 }
 
 exports.getAllMessagesInConvo = async (req,res) => {
     let convoId = req.params.convoID
     let profileId = req.session.profileID
+    req.session.convoId = convoId
 
     let messages = await profileModel.allConvoMessages(convoId)
 

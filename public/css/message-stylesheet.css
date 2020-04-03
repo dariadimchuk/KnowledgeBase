@@ -11,7 +11,8 @@
 }
 
 .convo-list {
-/*    overflow-y: scroll;*/ /* if we want to have vertical scroll */
+    overflow-y: scroll;
+    overflow-x: hidden;
     list-style: none;
     width: 100%;
 }
@@ -87,7 +88,7 @@
 /*Right-side panel*/
 .split-right {
     width: 49%;
-    height: 80%;
+    height: 67%;
     position: fixed;
     display: inline-flex;
     margin: 50px 10% 200px 0px;

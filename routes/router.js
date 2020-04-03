@@ -34,8 +34,8 @@ router.post('/filter', searchController.filterPosts)
 
 // MESSAGE
 router.get('/conversations', messageController.getAllConversations)
-router.post('/addConversation', messageController.addConversation) // will change to POST to match frontend
-router.get('/addMessage', messageController.addMessage) // will change to POST to match frontend
+router.post('/addConversation', messageController.addConversation) 
+router.post('/addMessage', messageController.addMessage)
 router.get('/conversations/:convoID', messageController.getAllMessagesInConvo) //replaced message/:convoID
 
 module.exports = router;
