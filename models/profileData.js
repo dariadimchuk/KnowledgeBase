@@ -61,30 +61,22 @@ const getManyPostReplies = (postIDsArray) => {
 
 
 
-const addNewProfile = (first, last, email, pw) => {
-    let sql = `INSERT INTO profile (firstName, lastName, email, password, numLikes, numPosts, numMessages) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)`
+const addNewProfile = (first, last, email, pw, imgurl, about, dob, country) => {
+    let sql = `INSERT INTO profile (firstName, lastName, email, password, profileImage, about, DOB, country, numLikes, numPosts, numMessages) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     return db.query(sql,[
         first,
         last,
         email,
         pw,
-        0,
-        0,
-        0
-    ],function(error, results){});
-}
-
-const confirmNewProfile = (imgurl, about, dob, country, profileId) => {
-    let sql = `UPDATE profile SET profileImage=?, about=?, DOB=?, country=? WHERE profileID=?`
-
-    return db.query(sql,[
         imgurl,
         about,
         dob,
         country,
-        profileId
+        0, 
+        0,
+        0
     ],function(error, results){});
 }
 
@@ -245,7 +237,6 @@ module.exports = {
     getManyPostReplies: getManyPostReplies,
     login : verifyLogin,
     newProfile : addNewProfile,
-    confirmProfile : confirmNewProfile,
     editProfile : editProfile,
     editPost : editPost,
     editReply : editReply,
