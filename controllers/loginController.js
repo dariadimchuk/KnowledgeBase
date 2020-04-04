@@ -27,6 +27,7 @@ exports.createNewProfile = (req,res) => {
         newUser[0] = data.insertId
         res.render('signup', {
             signupCSS: true,
+            layout: 'login-layout.hbs'
         })
     })
 }
