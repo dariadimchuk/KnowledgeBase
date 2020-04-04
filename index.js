@@ -4,15 +4,16 @@ let path = require('path');
 let bodyParser = require('body-parser');
 let db = require('./util/database');
 let session = require('express-session');
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer');
 
 const expressHbs = require('express-handlebars');
 
 const Handlebars = require("handlebars");
 
 Handlebars.registerHelper('if-equals', function (a, b, options) {
-  if (a == b) { return options.fn(this); }
-  return options.inverse(this);
+  let val = (a == b) ? options.fn(this) : options.inverse(this);
+  
+  return val;
 });
 
 

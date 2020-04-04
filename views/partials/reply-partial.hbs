@@ -1,11 +1,7 @@
 {{#each reply}}
     <div class="reply-section">
         <div class="reply-profile">
-            <a href="/profile/{{this.profileID}}">
-                <object data="{{this.profileImage}}">
-                    <img src="/media/default-img.png" alt="Default Profile" />
-                </object>
-            </a>
+            {{>profile-image-partial}}
         </div>
         <div class="reply-content">
             {{this.content}}
