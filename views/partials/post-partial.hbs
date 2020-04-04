@@ -1,15 +1,9 @@
 <section class="container">
-    
     {{#if post}}
         {{#each post}}
             <div class="discussion">
-                <div>
-                    <a href="/profile/user/{{this.profileID}}">
-                        <object data="{{this.profileImage}}">
-                            <img class="post-author-img" src="/media/default-img.png" alt="Default Profile" />
-                        </object>
-                    </a>
-                </div>
+                <div>{{>profile-image-partial}}</div>
+
                 <div class="discussion-content">
                     <div class="post-section">
                         <h4>{{this.title}}</h4>
@@ -34,27 +28,7 @@
                         {{/if-equals}}    
                     </button>
 
-                    <div class="all-replies hidden"> <!-- hide replies by default -->
-                        {{!-- <div id="show-replies">
-                            {{>reply-partial}}
-                        </div> --}}
-                        
-                        {{#each this.replies}}
-                            <div class="reply-section">
-                                <div class="reply-profile">
-                                    <a href="/profile/{{this.profileID}}">
-                                        <object data="{{this.profileImage}}">
-                                            <img src="/media/default-img.png" alt="Default Profile" />
-                                        </object>
-                                    </a>
-                                </div>
-                                <div class="reply-content">
-                                    {{this.content}}
-                                </div>
-                            </div>
-                        {{/each}}
-
-                        
+                    <div class="all-replies hidden"> <!-- hide replies by default -->                        
                         {{>reply-partial}}
                     </div>
                     
