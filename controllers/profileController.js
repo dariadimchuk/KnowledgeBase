@@ -67,6 +67,7 @@ exports.getProfile = async (req,res,next) => {
         element.numReplies = replies[element.postID] ? replies[element.postID].length : 0;
     });
     
+
     //finally grab all that data & pass to front end
     res.render('main-profile', 
         { 
@@ -82,24 +83,36 @@ exports.getProfile = async (req,res,next) => {
 
 }
 
-exports.getUserProfile = (req,res,next) => {
+exports.getUserProfile = async (req,res,next) => {
     let id = req.params.profileID;
     
-    let allUserPosts = profileModel.userPosts(id);
-    
-    allUserPosts.then( ([allUserPosts, metadata]) => {
-        let Profile = profileModel.getProfile(id);
-        Profile.then( ([data, metadata]) => {
+    let allUserPosts = await profileModel.userPosts(id);
+    let hasposts = allUserPosts && allUserPosts[0] && allUserPosts[0].length > 0;
 
-            res.render('user-profile', 
-                { 
-                    profile: data[0],
-                    post: allUserPosts,
-                    profileCSS: true ,
-                    disablePrev: true
-                });
-       });
-    })
+    //get all post ids
+    let postIds = hasposts ? allUserPosts[0].map(function(v){ return v.postID; }) : [];
+
+    //get all replies for the posts on this page
+    let replies = await profileModel.getRepliesToPostsByIds(postIds);
+
+    let posts = allUserPosts[0];
+
+    //attach replies to each post
+    posts.forEach(element => {
+        element.replies = replies[element.postID];
+        element.numReplies = replies[element.postID] ? replies[element.postID].length : 0;
+    });
+
+    
+    let profile = await profileModel.getProfile(id);
+
+    res.render('user-profile', 
+            { 
+                profile: profile[0][0],
+                post: posts,
+                profileCSS: true ,
+                disablePrev: true
+            });
 }
 
 exports.addLike = async (req,res,next) => {
