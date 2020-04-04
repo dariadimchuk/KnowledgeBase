@@ -28,21 +28,7 @@
                         {{/if-equals}}    
                     </button>
 
-                    <div class="all-replies hidden"> <!-- hide replies by default -->
-                        {{!-- <div id="show-replies">
-                            {{>reply-partial}}
-                        </div> --}}
-                        
-                        {{#each this.replies}}
-                            <div class="reply-section">
-                                <div class="reply-profile">{{>profile-image-partial}}</div>
-                                <div class="reply-content">
-                                    {{this.content}}
-                                </div>
-                            </div>
-                        {{/each}}
-
-                        
+                    <div class="all-replies hidden"> <!-- hide replies by default -->                        
                         {{>reply-partial}}
                     </div>
                     
