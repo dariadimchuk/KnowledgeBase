@@ -43,7 +43,7 @@ const getAllPosts = () => {
 }
 
 const getUserPosts = (profileID) => {
-    return db.execute(`SELECT * FROM post WHERE profileID='${profileID}'`)
+    return db.execute(`SELECT * FROM post WHERE profileID='${profileID}' ORDER BY postDate DESC`)
 }
 
 const getLatestPosts = (skip, take) => {
