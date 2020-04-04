@@ -17,30 +17,32 @@ exports.verifyLogin = (req,res) => {
 
 var newUser = []
 exports.createNewProfile = (req,res) => {
-    let fname = req.body.firstname
-    let lname = req.body.lastname
-    let email = req.body.email
-    let pw = req.body.password
 
-    let profile = profileModel.newProfile(fname, lname, email, pw)
-    profile.then( ([data, metadata]) => {
-        newUser[0] = data.insertId
-        res.render('signup', {
-            signupCSS: true,
-            layout: 'login-layout.hbs'
-        })
+    req.session.newfname = req.body.firstname
+    req.session.newlname = req.body.lastname
+    req.session.newEmail = req.body.email
+    req.session.newPW = req.body.password
+
+    res.render('signup', {
+        signupCSS: true,
+        layout: 'login-layout.hbs'
     })
 }
 
 exports.confirmNewProfile = (req,res) => {
+    let fname = req.session.newfname
+    let lname = req.session.newlname
+    let email = req.session.newEmail
+    let pw = req.session.newPW
     let url = req.body.imageurl
     let about = req.body.about
     let dob = req.body.dob
     let country = req.body.country
-    let profileId = newUser[0]
 
-    let profile = profileModel.confirmProfile(url, about, dob, country, profileId)
+    let profile = profileModel.newProfile(fname, lname, email, pw, url, about, dob, country)
     profile.then( ([data, metadata]) => {
+        let profileId = data.insertId;
+        req.session.profileID = profileId;
         res.redirect(`/profile/${profileId}`)
     })
 }
