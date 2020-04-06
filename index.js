@@ -57,4 +57,4 @@ app.get('/', function (req,res) {
   res.render('login', {layout: 'login-layout.hbs'});
 });
 
-app.listen(5000, () => console.log('Server ready @ port 5000'))
+app.listen(process.env.PORT || 5000);
