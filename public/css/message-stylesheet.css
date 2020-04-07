@@ -106,8 +106,11 @@
 }
 
 .individual-message {
-    width: 100%;
-    height: 170px;
+    width: 98%;
+    min-height: 170px;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .individual-message:hover {
