@@ -178,7 +178,7 @@ const addMessage = (convoID, senderID, content) => {
 const getAllMessagesInConversation = (convoId) => {
     return db.execute(`
     SELECT m.messageID, m.convoID, p.profileID, p.firstName, p.lastName, p.profileImage, 
-        m.content, m.messageDate
+        m.content, DATE_SUB(m.messageDate, INTERVAL 19 HOUR) as messageDate
     FROM message m
     JOIN profile p ON m.senderID=p.profileID
     WHERE convoID = ${convoId}
