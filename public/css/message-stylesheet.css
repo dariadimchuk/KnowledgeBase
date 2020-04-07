@@ -106,8 +106,11 @@
 }
 
 .individual-message {
-    width: 100%;
-    height: 170px;
+    width: 98%;
+    min-height: 170px;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .individual-message:hover {
@@ -132,7 +135,7 @@
     height: 90px;
     width: 90px; 
     margin: 10px;
-    float: left;
+    position: absolute;
 }
 
 .message-author-image object {
@@ -161,6 +164,7 @@
     display: inline;
     float: left;
     margin-top: 20px;
+    margin-left: 100px;
 }
 
 .message-author-info #name {
