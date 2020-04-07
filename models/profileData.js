@@ -150,7 +150,7 @@ const addConversation = (senderID, receiverID, subject) => {
 const getAllConvos = (userID) => {
     // If user = sender, return receiver info, else return sender info
     return db.execute(`
-    SELECT c.convoID, c.subject, c.convoDate,
+    SELECT c.convoID, c.subject, DATE_SUB(c.convoDate, INTERVAL 7 HOUR) as convoDate,
     IF(c.senderID = ${userID}, s.profileID, r.profileID) as userID,
         IF(c.senderID = ${userID}, r.profileID, s.profileID) as profileID,
         IF(c.senderID = ${userID}, r.firstName, s.firstName) as firstName,
@@ -178,7 +178,7 @@ const addMessage = (convoID, senderID, content) => {
 const getAllMessagesInConversation = (convoId) => {
     return db.execute(`
     SELECT m.messageID, m.convoID, p.profileID, p.firstName, p.lastName, p.profileImage, 
-        m.content, m.messageDate
+        m.content, DATE_SUB(m.messageDate, INTERVAL 7 HOUR) as messageDate
     FROM message m
     JOIN profile p ON m.senderID=p.profileID
     WHERE convoID = ${convoId}
